@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa da Roça - Produtos Naturais</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container main-header-content">
+            <div class="user-actions">
+                <a href="#" class="action-icon" id="user-icon" title="Login/Perfil">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                
+                <a href="#" class="action-icon" title="Carrinho de Compras">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquisar...">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                
+                <div id="user-modal" class="user-modal">
+                    <div class="modal-content">
+                        <a href="login.html" class="modal-button">Login</a>
+                        <a href="cadastro.html" class="modal-button">Cadastro</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="../html/index.html" class="logo" title="Ir para a página inicial">
+                <img src="../img/logo.png" alt="Logo da Casa da Roça">
+            </a>
+
+            <nav class="menu-nav">
+                <ul>
+                    <li><a href="../html/produtos.html">Produtos</a></li>
+                    <li><a href="../html/contatos.html">Contatos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao-conteudo">
+            <h1 style="text-align: center;">Nossos Produtos</h1>
+            <p style="text-align: center; margin-bottom: 2rem;">Conheça nossa seleção de produtos naturais, artesanais e saudáveis.</p>
+
+            <div class="galeria-produtos">
+                <article class="produto">
+                    <img src="../img/produto1.png" alt="Produto 1">
+                    <h3>Nome do Produto 1</h3>
+                    <p>Breve descrição do produto.</p>
+                    <span class="preco">R$ 15,90</span>
+                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 1">Adicionar ao Carrinho</button>
+                </article>
+
+                <article class="produto">
+                    <img src="../img/produto2.png" alt="Produto 2">
+                    <h3>Nome do Produto 2</h3>
+                    <p>Breve descrição do produto.</p>
+                    <span class="preco">R$ 22,50</span>
+                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 2">Adicionar ao Carrinho</button>
+                </article>
+
+                <article class="produto">
+                    <img src="../img/produto3.png" alt="Produto 3">
+                    <h3>Nome do Produto 3</h3>
+                    <p>Breve descrição do produto.</p>
+                    <span class="preco">R$ 9,99</span>
+                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 3">Adicionar ao Carrinho</button>
+                </article>
+
+                <article class="produto">
+                    <img src="../img/produto4.png" alt="Produto 4">
+                    <h3>Nome do Produto 4</h3>
+                    <p>Breve descrição do produto.</p>
+                    <span class="preco">R$ 35,00</span>
+                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 4">Adicionar ao Carrinho</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div id="popup-confirmacao" class="popup-overlay">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <h2>Item Adicionado ao Carrinho!</h2>
+            <p id="popup-message"></p>
+            <a href="#" class="botao">Ver Carrinho</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3 class="footer-logo">Casa da Roça</h3>
+                <p>O gostinho da roça na sua casa. Produtos saudáveis, artesanais e de qualidade.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Informações Úteis</h3>
+                <ul>
+                    <li><a href="../html/sobre.html">Sobre Nós</a></li>
+                    <li><a href="#">Política de Troca</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Atendimento</h3>
+                <ul>
+                    <li><a href="#">Perguntas Frequentes (FAQ)</a></li>
+                    <li><a href="#">Horário de Funcionamento</a></li>
+                    <li><a href="../html/contatos.html">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Casa da Roça. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

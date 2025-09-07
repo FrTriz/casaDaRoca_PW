@@ -1,0 +1,703 @@
+/* ========================================= */
+/* Configurações Globais e Variáveis */
+/* ========================================= */
+
+:root {
+    --verde-principal: #518249;
+    --verde-escuro: #3A6930;
+    --laranja-destaque: #FF8C00;
+    --branco: #FFFFFF;
+    --cinza-claro: #F5F5F5;
+    --texto-escuro: #333333;
+    --sombra-leve: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: var(--cinza-claro);
+    color: var(--texto-escuro);
+}
+
+p, li {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+/* ========================================= */
+/* Estilização do Topo */
+/* ========================================= */
+
+/* -- TOP BAR -- */
+.top-bar {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.top-bar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-info, .social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info span {
+    margin-right: 20px;
+    font-size: 0.9rem;
+    color: var(--branco);
+}
+
+.social-icons a {
+    color: var(--branco);
+    font-size: 1.2rem;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--laranja-destaque);
+}
+
+/* -- MAIN HEADER -- */
+.main-header {
+    background-color: var(--branco);
+    padding: 1rem 0;
+    box-shadow: var(--sombra-leve);
+}
+
+.main-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.menu-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.menu-nav ul li a {
+    text-decoration: none;
+    color: var(--texto-escuro);
+    font-weight: 600;
+    padding: 0 15px;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.menu-nav ul li a:hover {
+    color: var(--laranja-destaque);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-icon {
+    font-size: 1.7rem;
+    color: var(--texto-escuro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.action-icon:hover {
+    color: var(--laranja-destaque);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    padding: 8px 15px;
+    flex-grow: 1;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* ========================================= */
+/* Estilização das Seções de Conteúdo */
+/* ========================================= */
+
+.secao-conteudo {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: var(--branco);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ========================================= */
+/* Estilização de Botões e Links */
+/* ========================================= */
+
+.botao {
+    display: inline-block;
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.botao:hover {
+    background-color: #E67A00;
+    transform: translateY(-2px);
+}
+
+a {
+    color: var(--laranja-destaque);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o botão "Adicionar ao Carrinho" */
+.botao-adicionar-carrinho {
+    display: inline-block;
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botao-adicionar-carrinho:hover {
+    background-color: #E67A00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================= */
+/* Estilização da Galeria de Produtos */
+/* ========================================= */
+
+.galeria-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.produto {
+    background-color: var(--branco);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.produto:hover {
+    transform: translateY(-5px);
+}
+
+.produto img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.produto h3 {
+    color: var(--verde-principal);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.produto p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.produto .preco {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--laranja-destaque);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.produto .botao {
+    text-transform: capitalize;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+}
+
+/* ========================================= */
+/* Estilização do Pop-up */
+/* ========================================= */
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: var(--branco);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: #888;
+    cursor: pointer;
+}
+
+.popup-content h2 {
+    color: var(--verde-principal);
+}
+
+.popup-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* ========================================= */
+/* Estilização da Página de Contato */
+/* ========================================= */
+
+.contato-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.info-contato-section,
+.form-contato-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.info-item i {
+    font-size: 2rem;
+    color: var(--verde-principal);
+    margin-right: 1.5rem;
+}
+
+.info-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-form .botao {
+    width: 100%;
+    padding: 15px;
+}
+
+/* ========================================= */
+/* Estilização do Rodapé */
+/* ========================================= */
+
+.main-footer {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    padding: 1.5rem 0; /* Torna o rodapé mais estreito */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around; /* Distribui as colunas uniformemente */
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 1rem;
+    text-align: center; /* Centraliza todo o conteúdo da coluna */
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    color: var(--laranja-destaque);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.footer-column p, .footer-column ul {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.2rem;
+}
+
+.footer-column ul li a {
+    color: var(--cinza-claro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--laranja-destaque);
+}
+
+.social-icons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center; /* Centraliza os ícones */
+}
+
+.social-icons a {
+    color: var(--branco);
+    font-size: 1.5rem;
+    margin: 0 7px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--laranja-destaque);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding-top: 1rem;
+}
+
+/* Estilo para a seção de Boas-Vindas (Hero) */
+.section-hero {
+    background: url('../img/ingredientes-para-cosmeticos.avif') no-repeat center center/cover; /* Adicione uma imagem de fundo aqui */
+    height: 450px; /* Altura da seção */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--branco);
+    position: relative;
+    z-index: 1;
+}
+
+/* Adiciona uma sobreposição escura para o texto ser mais legível */
+.section-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.section-motivacional {
+    background-color: var(--cinza-claro);
+    padding: 4rem 0;
+}
+
+/* Adicionando estilização para botões de destaque */
+.btn-primary {
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #E67A00;
+}
+
+
+/* Estilo para a nova seção com imagem de fundo */
+.section-depoimento-bg {
+    background: url('../img/produtos-naturais.jpg') no-repeat center center/cover;
+    color: var(--branco);
+    text-align: center;
+    padding: 6rem 0; /* Espaçamento interno */
+    position: relative;
+    z-index: 1;
+}
+
+/* Camada de sobreposição para o texto ficar legível */
+.section-depoimento-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sobreposição escura */
+    z-index: -1;
+}
+
+.depoimento-content h2 {
+    font-size: 2rem;
+    color: var(--branco);
+    margin-bottom: 1rem;
+}
+
+.depoimento-content p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+/* Estilo para a página "Sobre" */
+.sobre-info-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sobre-info-item {
+    flex: 1;
+    min-width: 280px;
+    padding: 1.5rem;
+    background-color: var(--cinza-claro);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.sobre-info-item i {
+    font-size: 2.5rem;
+    color: var(--verde-principal);
+    margin-bottom: 1rem;
+}
+
+.sobre-info-item h2 {
+    color: var(--verde-principal);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.sobre-info-item ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.sobre-info-item ul li {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.sobre-info-item ul li i {
+    font-size: 1rem;
+    margin-right: 10px;
+    color: var(--laranja-destaque);
+}
+
+/* Estilo para a página de Login/Cadastro */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+.auth-form {
+    background-color: var(--branco);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 400px;
+    display: none; /* Escondido por padrão */
+}
+
+.auth-form.active {
+    display: block; /* Mostra o formulário ativo */
+}
+
+.form-title {
+    color: var(--verde-principal);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-form .botao {
+    width: 100%;
+    padding: 15px;
+}
+
+.form-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Estilo para a janela flutuante de login/cadastro */
+.user-modal {
+    position: absolute;
+    top: 50px; /* Posiciona 50px abaixo do topo do contêiner pai */
+    left: 0; /* Alinha o lado esquerdo do modal com o lado esquerdo do contêiner pai */
+    width: 200px;
+    background-color: var(--branco);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Inicia escondida */
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.user-modal.active {
+    display: block; /* Mostra a janela quando a classe 'active' é adicionada */
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-button {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--verde-principal);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+    background-color: var(--cinza-claro);
+    color: var(--laranja-destaque);
+}
+
+/* Garante que o contêiner pai do modal tenha um posicionamento relativo */
+.user-actions {
+    position: relative;
+}
