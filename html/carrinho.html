@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Casa da Roça</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
+    </head>
+<body>
+
+    <header class="main-header">
+        <div class="container main-header-content">
+            <div class="user-actions">
+                <a href="#" class="action-icon" id="user-icon" title="Login/Perfil"><i class="fa-solid fa-user"></i></a>
+                <div id="user-modal" class="user-modal">
+                    <div class="modal-content">
+                        <a href="login.html" class="modal-button">Login</a>
+                        <a href="cadastro.html" class="modal-button">Cadastro</a>
+                    </div>
+                </div>
+                <a href="carrinho.html" class="action-icon" title="Carrinho de Compras"><i class="fa-solid fa-cart-shopping"></i></a>
+                <div class="search-box">
+                    <input type="text" placeholder="Pesquisar...">
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+            <a href="index.html" class="logo" title="Ir para a página inicial">
+                <img src="../img/logo.png" alt="Logo da Casa da Roça">
+            </a>
+            <nav class="menu-nav">
+                <ul>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="contatos.html">Contatos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao-conteudo">
+            <h1 style="text-align: center;">Seu Carrinho</h1>
+            <p class="carrinho-vazio" style="text-align: center; display: none;">Seu carrinho está vazio.</p>
+            
+            <div class="tabela-carrinho-container">
+                <table class="tabela-carrinho">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="../img/produto1.png" alt="Produto 1"> Nome do Produto 1</td>
+                            <td>R$ 15,90</td>
+                            <td>1</td>
+                            <td>R$ 15,90</td>
+                        </tr>
+                        <tr>
+                            <td><img src="../img/produto2.png" alt="Produto 2"> Nome do Produto 2</td>
+                            <td>R$ 22,50</td>
+                            <td>2</td>
+                            <td>R$ 45,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="resumo-compra">
+                <div class="resumo-item">
+                    <span>Subtotal:</span>
+                    <span class="resumo-valor">R$ 60,90</span>
+                </div>
+                <div class="resumo-item">
+                    <span>Frete (Feira de Santana):</span>
+                    <span class="resumo-valor">R$ 5,00</span>
+                </div>
+                <div class="resumo-item total-final">
+                    <span>Total:</span>
+                    <span class="resumo-valor">R$ 65,90</span>
+                </div>
+                <a href="checkout.html" class="botao-finalizar">Finalizar Compra</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3 class="footer-logo">Casa da Roça</h3>
+                <p>O gostinho da roça na sua casa. Produtos saudáveis, artesanais e de qualidade.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Informações Úteis</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Política de Troca</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Atendimento</h3>
+                <ul>
+                    <li><a href="#">Perguntas Frequentes (FAQ)</a></li>
+                    <li><a href="#">Horário de Funcionamento</a></li>
+                    <li><a href="contatos.html">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Casa da Roça. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>
