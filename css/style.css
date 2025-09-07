@@ -5,11 +5,13 @@
 :root {
     --verde-principal: #518249;
     --verde-escuro: #3A6930;
+    --verde-medio: #40782a;
     --laranja-destaque: #FF8C00;
     --branco: #FFFFFF;
     --cinza-claro: #F5F5F5;
     --texto-escuro: #333333;
     --sombra-leve: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --verde-rodape: #45783A;
 }
 
 * {
@@ -25,7 +27,7 @@ body {
     color: var(--texto-escuro);
 }
 
-p, li {
+p, li, label, input, textarea, select, button {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -40,46 +42,7 @@ p, li {
 /* Estilização do Topo */
 /* ========================================= */
 
-/* -- TOP BAR -- */
-.top-bar {
-    background-color: var(--verde-escuro);
-    color: var(--branco);
-    padding: 0.5rem 0;
-    font-size: 0.9rem;
-}
-
-.top-bar-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.contact-info, .social-icons {
-    display: flex;
-    align-items: center;
-}
-
-.contact-info span {
-    margin-right: 20px;
-    font-size: 0.9rem;
-    color: var(--branco);
-}
-
-.social-icons a {
-    color: var(--branco);
-    font-size: 1.2rem;
-    margin-left: 15px;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: var(--laranja-destaque);
-}
-
-/* -- MAIN HEADER -- */
+/* -- Cabeçalho Principal-- */
 .main-header {
     background-color: var(--branco);
     padding: 1rem 0;
@@ -121,6 +84,7 @@ p, li {
     display: flex;
     align-items: center;
     gap: 15px;
+    position: relative;
 }
 
 .action-icon {
@@ -157,8 +121,70 @@ p, li {
     font-size: 1.2rem;
 }
 
+/* Estilo do modal de login/cadastro */
+.user-modal {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 200px;
+    background-color: var(--branco);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.user-modal.active {
+    display: block;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-button {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--verde-principal);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+    background-color: var(--cinza-claro);
+    color: var(--laranja-destaque);
+}
+
+/* Estilo específico para o cabeçalho do admin */
+.admin-header {
+    background-color: var(--branco); /* Cor de fundo alterada */
+}
+
+.admin-header .main-header-content {
+    justify-content: space-between; /* Distribui os elementos horizontalmente */
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.admin-header .logo {
+    margin-right: auto; 
+}
+
+.admin-header .menu-nav ul li a {
+    color: var(--laranja-destaque); 
+    font-weight: 600;
+}
+
+.admin-header .action-icon {
+    color: var(--laranja-destaque); 
+}
+
 /* ========================================= */
-/* Estilização das Seções de Conteúdo */
+/* Estilos Gerais de Conteúdo */
 /* ========================================= */
 
 .secao-conteudo {
@@ -171,9 +197,18 @@ p, li {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* ========================================= */
-/* Estilização de Botões e Links */
-/* ========================================= */
+.admin-title, .form-title {
+    font-size: 2rem;
+    color: var(--verde-principal);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.admin-subtitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666;
+}
 
 .botao {
     display: inline-block;
@@ -203,32 +238,119 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Estilo para o botão "Adicionar ao Carrinho" */
-.botao-adicionar-carrinho {
-    display: inline-block;
-    background-color: var(--laranja-destaque);
-    color: var(--branco);
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 50px;
-    font-family: 'Open Sans', sans-serif;
+/* Estilo de todos os formulários */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+.auth-form, .admin-form, .contact-form form, .checkout-form-col form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.auth-form label, .admin-form label, .contact-form label, .checkout-form-col label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.auth-form input, .admin-form input, .admin-form select, .admin-form textarea, .contact-form input, .contact-form textarea, .checkout-form-col input, .checkout-form-col textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: border-color 0.3s ease;
 }
 
-.botao-adicionar-carrinho:hover {
-    background-color: #E67A00;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.auth-form input:focus, .admin-form input:focus, .contact-form input:focus, .checkout-form-col input:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+}
+
+.auth-form .botao, .contact-form .botao, .checkout-form-col .botao {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
 }
 
 /* ========================================= */
-/* Estilização da Galeria de Produtos */
+/* Estilos Específicos das Páginas */
 /* ========================================= */
 
+/* Estilo da Home (Hero) */
+.section-hero {
+    background: url('../img/ingredientes-para-cosmeticos.avif') no-repeat center center/cover;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--branco);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* Estilo para a nova seção com imagem de fundo (Depoimento) */
+.section-depoimento-bg {
+    background: url('../img/produtos-naturais.jpg') no-repeat center center/cover;
+    color: var(--branco);
+    text-align: center;
+    padding: 6rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Camada de sobreposição para o texto ficar legível */
+.section-depoimento-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.depoimento-content h2 {
+    font-size: 2rem;
+    color: var(--branco);
+    margin-bottom: 1rem;
+}
+
+.depoimento-content p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+
+/* Estilo para a seção motivacional */
+.section-motivacional {
+    background-color: var(--cinza-claro);
+    padding: 4rem 0;
+}
+
+/* Estilo da página de Produtos */
 .galeria-produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -274,16 +396,28 @@ a:hover {
     margin-bottom: 1rem;
 }
 
-.produto .botao {
-    text-transform: capitalize;
-    font-size: 1rem;
+.botao-adicionar-carrinho {
+    display: inline-block;
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
     padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* ========================================= */
-/* Estilização do Pop-up */
-/* ========================================= */
+.botao-adicionar-carrinho:hover {
+    background-color: #E67A00;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+/* Estilo para o pop-up de confirmação */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -291,7 +425,7 @@ a:hover {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    display: none;
+    display: none; /* Esta propriedade esconde o pop-up por padrão */
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -324,239 +458,139 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
-/* ========================================= */
-/* Estilização da Página de Contato */
-/* ========================================= */
+/* Estilo do carrinho e checkout */
+.tabela-carrinho-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
 
-.contato-container {
+.tabela-carrinho {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-carrinho th, .tabela-carrinho td {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabela-carrinho th {
+    background-color: var(--cinza-claro);
+    font-size: 1rem;
+    color: var(--texto-escuro);
+}
+
+.tabela-carrinho td {
+    font-size: 0.9rem;
+}
+
+.tabela-carrinho td img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.resumo-compra {
+    max-width: 400px;
+    margin-left: auto;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.resumo-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.resumo-item.total-final {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    border-top: 1px dashed #ccc;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.botao-finalizar {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.botao-finalizar:hover {
+    background-color: #E67A00;
+}
+
+.checkout-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
+    gap: 2rem;
 }
 
-.info-contato-section,
-.form-contato-section {
+.checkout-form-col, .checkout-resumo-col {
     flex: 1;
     min-width: 300px;
 }
 
+.checkout-resumo-col {
+    background-color: var(--cinza-claro);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo para a área de informações de contato */
+.info-contato-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os itens no contêiner */
+    gap: 3rem; /* Adiciona um espaço maior entre os itens */
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    text-align: center; /* Garante que o texto de cada item também seja centralizado */
+}
+
 .info-item {
     display: flex;
-    align-items: flex-start;
-    margin-bottom: 2rem;
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center;
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
 }
 
 .info-item i {
     font-size: 2rem;
     color: var(--verde-principal);
-    margin-right: 1.5rem;
+    margin-bottom: 0.5rem; /* Espaço abaixo do ícone */
 }
 
 .info-item h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-}
-
-.contact-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.contact-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.contact-form .botao {
-    width: 100%;
-    padding: 15px;
-}
-
-/* ========================================= */
-/* Estilização do Rodapé */
-/* ========================================= */
-
-.main-footer {
-    background-color: var(--verde-escuro);
-    color: var(--branco);
-    padding: 1.5rem 0; /* Torna o rodapé mais estreito */
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-around; /* Distribui as colunas uniformemente */
-    flex-wrap: wrap;
-    padding-bottom: 1rem;
-}
-
-.footer-column {
-    flex: 1;
-    min-width: 200px;
-    margin: 1rem;
-    text-align: center; /* Centraliza todo o conteúdo da coluna */
-}
-
-.footer-column h3 {
-    font-size: 1.2rem;
-    color: var(--laranja-destaque);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.footer-column p, .footer-column ul {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    text-align: center;
-}
-
-.footer-column ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-column ul li {
-    margin-bottom: 0.2rem;
-}
-
-.footer-column ul li a {
-    color: var(--cinza-claro);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-column ul li a:hover {
-    color: var(--laranja-destaque);
-}
-
-.social-icons {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center; /* Centraliza os ícones */
-}
-
-.social-icons a {
-    color: var(--branco);
-    font-size: 1.5rem;
-    margin: 0 7px;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: var(--laranja-destaque);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    padding-top: 1rem;
-}
-
-/* Estilo para a seção de Boas-Vindas (Hero) */
-.section-hero {
-    background: url('../img/ingredientes-para-cosmeticos.avif') no-repeat center center/cover; /* Adicione uma imagem de fundo aqui */
-    height: 450px; /* Altura da seção */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--branco);
-    position: relative;
-    z-index: 1;
-}
-
-/* Adiciona uma sobreposição escura para o texto ser mais legível */
-.section-hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: -1;
-}
-
-.hero-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero-subtitle {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-}
-
-.section-motivacional {
-    background-color: var(--cinza-claro);
-    padding: 4rem 0;
-}
-
-/* Adicionando estilização para botões de destaque */
-.btn-primary {
-    background-color: var(--laranja-destaque);
-    color: var(--branco);
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 50px;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #E67A00;
-}
-
-
-/* Estilo para a nova seção com imagem de fundo */
-.section-depoimento-bg {
-    background: url('../img/produtos-naturais.jpg') no-repeat center center/cover;
-    color: var(--branco);
-    text-align: center;
-    padding: 6rem 0; /* Espaçamento interno */
-    position: relative;
-    z-index: 1;
-}
-
-/* Camada de sobreposição para o texto ficar legível */
-.section-depoimento-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Sobreposição escura */
-    z-index: -1;
-}
-
-.depoimento-content h2 {
-    font-size: 2rem;
-    color: var(--branco);
-    margin-bottom: 1rem;
-}
-
-.depoimento-content p {
+    margin: 0;
     font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto 2rem;
+    color: var(--texto-escuro);
+}
+
+.info-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
 }
 
 /* Estilo para a página "Sobre" */
@@ -607,97 +641,196 @@ a:hover {
     color: var(--laranja-destaque);
 }
 
-/* Estilo para a página de Login/Cadastro */
-.form-container {
+/* Estilo para a área de administração */
+
+.dashboard-cards {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 50vh;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.auth-form {
-    background-color: var(--branco);
-    padding: 2.5rem;
+.dashboard-card {
+    background-color: var(--cinza-claro);
+    padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 400px;
-    display: none; /* Escondido por padrão */
+    box-shadow: var(--sombra-leve);
+    text-align: center;
+    width: 280px;
 }
 
-.auth-form.active {
-    display: block; /* Mostra o formulário ativo */
-}
-
-.form-title {
+.dashboard-card h3 {
     color: var(--verde-principal);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.card-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--laranja-destaque);
+}
+
+.card-link {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--laranja-destaque);
+}
+
+.tabela-admin-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tabela-admin {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.tabela-admin th,
+.tabela-admin td {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.tabela-admin thead {
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    text-align: left;
+}
+
+.tabela-admin tbody tr:nth-child(even) {
+    background-color: var(--cinza-claro);
+}
+
+.tabela-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.btn-editar, .btn-excluir {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-editar {
+    color: var(--laranja-destaque);
+}
+
+.btn-excluir {
+    color: #f00;
+}
+
+.categoria-gerenciamento {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.categoria-form-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    background-color: var(--cinza-claro);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+}
+
+.categoria-gerenciamento .tabela-admin-container {
+    flex: 2;
+    min-width: 300px;
+}
+
+/* Container para centralizar botões */
+.centered-button-container {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.auth-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+/* ========================================= */
+/* Estilização do Rodapé */
+/* ========================================= */
+
+.main-footer {
+    background-color: var(--verde-rodape);
+    color: var(--branco);
+    padding: 2rem 0;
 }
 
-.auth-form input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.auth-form .botao {
-    width: 100%;
-    padding: 15px;
-}
-
-.form-switch {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-/* Estilo para a janela flutuante de login/cadastro */
-.user-modal {
-    position: absolute;
-    top: 50px; /* Posiciona 50px abaixo do topo do contêiner pai */
-    left: 0; /* Alinha o lado esquerdo do modal com o lado esquerdo do contêiner pai */
-    width: 200px;
-    background-color: var(--branco);
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: none; /* Inicia escondida */
-    z-index: 1000;
-    padding: 1rem;
-}
-
-.user-modal.active {
-    display: block; /* Mostra a janela quando a classe 'active' é adicionada */
-}
-
-.modal-content {
+.footer-content {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 1.5rem;
 }
 
-.modal-button {
-    padding: 10px;
-    text-decoration: none;
-    color: var(--verde-principal);
-    font-weight: bold;
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin: 1rem;
     text-align: center;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
 
-.modal-button:hover {
-    background-color: var(--cinza-claro);
+.footer-column h3 {
+    font-size: 1.2rem;
+    color: var(--laranja-destaque);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.footer-column p, .footer-column ul {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.2rem;
+}
+
+.footer-column ul li a {
+    color: var(--cinza-claro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
     color: var(--laranja-destaque);
 }
 
-/* Garante que o contêiner pai do modal tenha um posicionamento relativo */
-.user-actions {
-    position: relative;
+.social-icons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    color: var(--branco);
+    font-size: 1.5rem;
+    margin: 0 7px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--laranja-destaque);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding-top: 1rem;
 }
