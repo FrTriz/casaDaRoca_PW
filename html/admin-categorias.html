@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Categorias - Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="main-header admin-header">
+        <div class="container main-header-content">
+            <a href="admin-dashboard.html" class="logo" title="Ir para a Dashboard">
+                <img src="../img/logo.png" alt="Logo da Casa da Roça">
+            </a>
+            <nav class="menu-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html">Dashboard</a></li>
+                    <li><a href="admin-list-produtos.html">Produtos</a></li>
+                    <li><a href="admin-list-usuarios.html">Usuários</a></li>
+                    <li><a href="admin-categorias.html">Categorias</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="action-icon" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao-conteudo">
+            <h1 class="admin-title">Gerenciar Categorias</h1>
+            <p class="admin-subtitle">Adicione, edite ou exclua categorias de produtos.</p>
+            
+            <div class="categoria-gerenciamento">
+                <div class="categoria-form-container">
+                    <h2 style="color: var(--verde-principal);">Nova Categoria</h2>
+                    <form action="add-categoria.php" method="POST" class="admin-form">
+                        <div class="form-group">
+                            <label for="nome_categoria">Nome da Categoria</label>
+                            <input type="text" id="nome_categoria" name="nome_categoria" required>
+                        </div>
+                        <button type="submit" class="botao" style="margin-top: 1rem;">Salvar Categoria</button>
+                    </form>
+                </div>
+                
+                <div class="tabela-admin-container">
+                    <h2 style="color: var(--verde-principal);">Categorias Existentes</h2>
+                    <table class="tabela-admin">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome da Categoria</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Grãos e Sementes</td>
+                                <td>
+                                    <a href="#" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>
+                                    <a href="#" class="btn-excluir" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Temperos</td>
+                                <td>
+                                    <a href="#" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>
+                                    <a href="#" class="btn-excluir" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3 class="footer-logo">Casa da Roça</h3>
+                <p>O gostinho da roça na sua casa. Produtos saudáveis, artesanais e de qualidade.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Informações Úteis</h3>
+                <ul>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Política de Troca</a></li>
+                    <li><a href="#">Termos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Atendimento</h3>
+                <ul>
+                    <li><a href="#">Perguntas Frequentes (FAQ)</a></li>
+                    <li><a href="#">Horário de Funcionamento</a></li>
+                    <li><a href="contatos.html">Fale Conosco</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Casa da Roça. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
