@@ -10,29 +10,16 @@ $c = new Categoria("db_casaDaRoca", "localhost", "postgres", "bsi1234");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Categorias - Admin</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="main-header admin-header">
-        <div class="container main-header-content">
-            <a href="admin-dashboard.html" class="logo" title="Ir para a Dashboard">
-                <img src="../img/logo.png" alt="Logo da Casa da Roça">
-            </a>
-            <nav class="menu-nav">
-                <ul>
-                    <li><a href="admin-dashboard.html">Dashboard</a></li>
-                    <li><a href="admin-list-produtos.html">Produtos</a></li>
-                    <li><a href="admin-list-usuarios.html">Usuários</a></li>
-                    <li><a href="admin-categorias.php">Categorias</a></li>
-                </ul>
-            </nav>
-            <a href="#" class="action-icon" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
-        </div>
-    </header>
+    <?php
+        include 'admin-header.php';
+    ?>
 
     <main>
         <section class="secao-conteudo">
@@ -95,10 +82,8 @@ $c = new Categoria("db_casaDaRoca", "localhost", "postgres", "bsi1234");
         </section>
     </main>
 
-    <footer class="admin-footer">
-        <div class="container">
-            <p>&copy; 2025 Casa da Roça. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <?php
+        include 'admin-footer.php';
+    ?>
 </body>
 </html>
