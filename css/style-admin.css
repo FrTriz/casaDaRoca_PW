@@ -103,19 +103,24 @@ p, li, label, input, textarea, select, button {
     color: var(--laranja-destaque);
 }
 
-/* Estilo específico do cabeçalho de admin */
+/* Estilo específico para o cabeçalho do admin */
 .admin-header {
     background-color: var(--branco);
+    padding: 1rem 0;
+    box-shadow: var(--sombra-leve);
 }
 
 .admin-header .main-header-content {
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: center;
+    gap: 3rem; /* Adiciona um espaçamento consistente entre os elementos */
 }
-
-.admin-header .logo {
-    margin-right: auto;
+.admin-header .menu-nav {
+    flex-grow: 1; /* Permite que o menu ocupe o espaço extra */
 }
 
 .admin-header .menu-nav ul li a {
@@ -348,3 +353,12 @@ p, li, label, input, textarea, select, button {
     padding: 1rem 0;
     margin-top: 2rem;
 }
+
+/* Estilo da logo para o formato redondo */
+.logo img {
+    height: 100px; /* Aumenta a altura para 100px */
+    width: 100px;  /* Define a largura igual à altura para criar um círculo */
+    border-radius: 50%; /* Transforma o elemento em um círculo */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+}
+

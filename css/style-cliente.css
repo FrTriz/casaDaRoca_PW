@@ -64,8 +64,13 @@ p, li, label, input, textarea, select, button {
     align-items: center;
 }
 
+/* Estilo da logo para o formato redondo */
 .logo img {
-    height: 50px;
+    height: 100px !important; /* Força a altura */
+    width: 100px !important;  /* Força a largura */
+    border-radius: 50% !important; /* Força o formato circular */
+    object-fit: cover !important; /* Força o ajuste da imagem */
+    display: block !important;
 }
 
 .menu-nav ul {
