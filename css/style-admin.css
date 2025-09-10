@@ -1,0 +1,350 @@
+/* ========================================= */
+/* Configurações Globais e Variáveis */
+/* ========================================= */
+
+:root {
+    --verde-principal: #518249;
+    --verde-escuro: #3A6930;
+    --laranja-destaque: #FF8C00;
+    --branco: #FFFFFF;
+    --cinza-claro: #F5F5F5;
+    --texto-escuro: #333333;
+    --sombra-leve: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --verde-rodape: #45783A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: var(--cinza-claro);
+    color: var(--texto-escuro);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+p, li, label, input, textarea, select, button {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+/* ========================================= */
+/* Estilização do Topo do Admin */
+/* ========================================= */
+
+.main-header {
+    background-color: var(--branco);
+    padding: 1rem 0;
+    box-shadow: var(--sombra-leve);
+}
+
+.main-header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.menu-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.menu-nav ul li a {
+    text-decoration: none;
+    color: var(--texto-escuro);
+    font-weight: 600;
+    padding: 0 15px;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.menu-nav ul li a:hover {
+    color: var(--laranja-destaque);
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.action-icon {
+    font-size: 1.7rem;
+    color: var(--texto-escuro);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.action-icon:hover {
+    color: var(--laranja-destaque);
+}
+
+/* Estilo específico do cabeçalho de admin */
+.admin-header {
+    background-color: var(--branco);
+}
+
+.admin-header .main-header-content {
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.admin-header .logo {
+    margin-right: auto;
+}
+
+.admin-header .menu-nav ul li a {
+    color: var(--laranja-destaque);
+    font-weight: 600;
+}
+
+.admin-header .action-icon {
+    color: var(--laranja-destaque);
+}
+
+/* ========================================= */
+/* Estilos da Área de Admin */
+/* ========================================= */
+
+.secao-conteudo {
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: var(--branco);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.admin-title, .form-title {
+    font-size: 2rem;
+    color: var(--verde-principal);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.admin-subtitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.botao {
+    display: inline-block;
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.botao:hover {
+    background-color: #E67A00;
+    transform: translateY(-2px);
+}
+
+.admin-form, .contact-form form, .checkout-form-col form {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.admin-form label, .contact-form label, .checkout-form-col label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.admin-form input, .admin-form select, .admin-form textarea, .contact-form input, .contact-form textarea, .checkout-form-col input, .checkout-form-col textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.admin-form input:focus, .contact-form input:focus, .checkout-form-col input:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+}
+
+.admin-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.admin-form .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1.5rem;
+}
+
+.admin-form .botao, .admin-form .botao-secundario {
+    flex: 1;
+    max-width: 250px;
+    text-align: center;
+}
+
+.admin-form .botao-secundario {
+    background-color: transparent;
+    border: 2px solid var(--laranja-destaque);
+    color: var(--laranja-destaque);
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.admin-form .botao-secundario:hover {
+    background-color: var(--laranja-destaque);
+    color: var(--branco);
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-card {
+    background-color: var(--cinza-claro);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+    text-align: center;
+    width: 280px;
+}
+
+.dashboard-card h3 {
+    color: var(--verde-principal);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.card-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--laranja-destaque);
+}
+
+.card-link {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: var(--laranja-destaque);
+}
+
+.tabela-admin-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tabela-admin {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+.tabela-admin th,
+.tabela-admin td {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.tabela-admin thead {
+    background-color: var(--verde-principal);
+    color: var(--branco);
+    text-align: left;
+}
+
+.tabela-admin tbody tr:nth-child(even) {
+    background-color: var(--cinza-claro);
+}
+
+.tabela-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.btn-editar, .btn-excluir {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-editar {
+    color: var(--laranja-destaque);
+}
+
+.btn-excluir {
+    color: #f00;
+}
+
+.categoria-gerenciamento {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.categoria-form-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    background-color: var(--cinza-claro);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--sombra-leve);
+}
+
+.categoria-gerenciamento .tabela-admin-container {
+    flex: 2;
+    min-width: 300px;
+}
+
+.admin-footer {
+    background-color: var(--verde-escuro);
+    color: var(--cinza-claro);
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
