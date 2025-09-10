@@ -1,7 +1,7 @@
 <?php
 // 1. Inclui e instancia a classe
 require_once '../php/Classes/CategoriaClass.php';
-$c = new Categoria("TrabalhoPDS", "localhost", "postgres", "172834");
+$c = new Categoria("db_casaDaRoca", "localhost", "postgres", "bsi1234");
 
 // 2. Pega o ID da URL de forma segura
 $id_categoria = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -26,7 +26,21 @@ if (!$categoria) {
     </head>
 <body>
     <header class="main-header admin-header">
-        </header>
+        <div class="container main-header-content">
+            <a href="admin-dashboard.html" class="logo" title="Ir para a Dashboard">
+                <img src="../img/logo.png" alt="Logo da Casa da Roça">
+            </a>
+            <nav class="menu-nav">
+                <ul>
+                    <li><a href="admin-dashboard.html">Dashboard</a></li>
+                    <li><a href="admin-list-produtos.html">Produtos</a></li>
+                    <li><a href="admin-list-usuarios.html">Usuários</a></li>
+                    <li><a href="admin-categorias.php">Categorias</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="action-icon" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </header>
 
     <main>
         <section class="secao-conteudo">
@@ -48,7 +62,10 @@ if (!$categoria) {
         </section>
     </main>
 
-    <footer class="main-footer">
-        </footer>
+    <footer class="admin-footer">
+        <div class="container">
+            <p>&copy; 2025 Casa da Roça. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
