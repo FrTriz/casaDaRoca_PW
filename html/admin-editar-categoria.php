@@ -5,14 +5,13 @@ require_once '../php/Classes/ProdutoClass.php';
 $c = new Categoria($pdo);
 $p = new Produto($pdo);
 
-// 2. Pega o ID da URL de forma segura
+// Pega o ID da URL de forma segura
 $id_categoria = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// 3. Busca os dados da categoria específica no banco
-// (Vamos criar o método buscarPorId() no Passo 4)
+// Busca os dados da categoria específica no banco
 $categoria = $c->buscarPorId($id_categoria);
 
-// 4. Se não encontrar a categoria, redireciona de volta para a lista
+// Se não encontrar a categoria, redireciona de volta para a lista
 if (!$categoria) {
     header("Location: admin-categorias.php");
     exit();

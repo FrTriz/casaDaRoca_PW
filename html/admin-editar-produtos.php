@@ -4,7 +4,7 @@ require_once '../php/conexao.php';
 require_once '../php/Classes/ProdutoClass.php';
 require_once '../php/Classes/CategoriaClass.php';
 
-// 2. VERIFICAR SE O ID DO PRODUTO FOI ENVIADO
+// Verifica se o ID do produto foi passado na URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     // Se não houver ID, redireciona para a lista de produtos
     header('Location: admin-list-produtos.php?status=erro-id');
@@ -13,7 +13,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $id_produto = $_GET['id'];
 
-// 3. BUSCAR OS DADOS DO PRODUTO E DAS CATEGORIAS
+// Busca os dados do produto e das categorias
 $produto_obj = new Produto($pdo);
 $categoria_obj = new Categoria($pdo);
 
@@ -22,14 +22,14 @@ $produto = $produto_obj->buscarPorId($id_produto);
 // Busca todas as categorias para preencher o <select>
 $categorias = $categoria_obj->buscarDados();
 
-// 4. VERIFICAR SE O PRODUTO FOI ENCONTRADO
+// Verifica se o produto foi encontrado
 if (!$produto) {
     // Se o produto não existe, redireciona
     header('Location: admin-list-produtos.php?status=produto-nao-encontrado');
     exit();
 }
 
-// 5. PREPARAR A IMAGEM PARA EXIBIÇÃO
+// Prepara a imagem para exibição, se existir
 $imagemBase64 = '';
 if (isset($produto['imagem']) && !empty($produto['imagem'])) {
     $imagemConteudo = is_resource($produto['imagem']) ? stream_get_contents($produto['imagem']) : $produto['imagem'];
