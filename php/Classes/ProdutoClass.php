@@ -9,13 +9,13 @@ class Produto {
         
 
     public function buscarDados($limite = null) {
-    // A sua query SQL base
+    // A SQL base
     $sql = "SELECT p.id_produto, p.nome, p.descricao, p.preco, p.estoque, p.imagem, c.nome AS categoria 
             FROM produto p 
             JOIN categoria c ON p.id_categoria = c.id_categoria 
             ORDER BY p.id_produto";
 
-    // Se um limite numérico foi passado, adicionamos a cláusula LIMIT
+    // Cláusula LIMIT
     if (is_numeric($limite)) {
         $sql .= " LIMIT " . intval($limite);
     }
@@ -25,7 +25,7 @@ class Produto {
 }
 
     public function cadastrar($nome, $descricao, $preco, $estoque, $imagem, $id_categoria) {
-    // 1. Verifica se já existe um produto com o mesmo nome
+    // Verifica se já existe um produto com o mesmo nome
     $cmd = $this->pdo->prepare("SELECT id_produto FROM produto WHERE nome = :n");
     $cmd->bindValue(":n", $nome);
     $cmd->execute();
@@ -34,7 +34,7 @@ class Produto {
         // Se encontrou um produto com o mesmo nome, não cadastra e retorna falso
         return false; 
     } else {
-        // 2. Se não existe, insere o novo produto
+        // Se não existe, insere o novo produto
         $cmd = $this->pdo->prepare("INSERT INTO produto (nome, descricao, preco, estoque, imagem, id_categoria) 
                                      VALUES (:n, :d, :p, :e, :i, :c)");
         $cmd->bindValue(":n", $nome);

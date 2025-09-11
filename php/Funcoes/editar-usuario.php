@@ -1,5 +1,4 @@
 <?php
-// C:\xampp\htdocs\TrabalhoPDS\php\Funcoes\editar-usuario.php
 
 require_once '../conexao.php';
 

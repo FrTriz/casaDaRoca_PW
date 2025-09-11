@@ -1,5 +1,4 @@
 <?php
-// C:\xampp\htdocs\casaDaRoca\php\Funcoes\add-usuario.php
 
 require_once '../conexao.php';
 
