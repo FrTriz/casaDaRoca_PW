@@ -30,7 +30,7 @@
 
                         <button type="submit" class="botao">Entrar</button>
                     </form>
-                    <p class="form-switch">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+                    <p class="form-switch">Ainda não tem conta? <a href="cadastro.php">Cadastre-se</a></p>
                 </div>
             </div>
         </section>

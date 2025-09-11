@@ -22,7 +22,7 @@
                 <div id="cadastro-form" class="auth-form active" style="display: block;">
                     <h1 class="form-title">Cadastre-se</h1>
                    <!-- Altere o formulário para: -->
-                        <form action="/TrabalhoPDS/php/Funcoes/add-usuario.php" method="POST">
+                        <form action="../php/Funcoes/add-usuario.php" method="POST">
                             <label for="cadastro-nome">Nome</label>
                             <input type="text" id="cadastro-nome" name="nome" required>
 
@@ -34,7 +34,7 @@
 
                             <button type="submit" class="botao">Cadastrar</button>
                         </form>
-                    <p class="form-switch">Já tem conta? <a href="login.html">Faça login</a></p>
+                    <p class="form-switch">Já tem conta? <a href="login.php">Faça login</a></p>
                 </div>
             </div>
         </section>

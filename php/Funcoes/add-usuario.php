@@ -1,5 +1,5 @@
 <?php
-// C:\xampp\htdocs\TrabalhoPDS\php\Funcoes\add-usuario.php
+// C:\xampp\htdocs\casaDaRoca\php\Funcoes\add-usuario.php
 
 require_once '../conexao.php';
 
@@ -28,14 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_cliente->execute();
 
         // Redirecionar para sucesso
-        header('Location: ../../html/cadastro-sucesso.html');
+        header('Location: ../../html/cadastro-sucesso.php');
         exit();
 
     } catch (PDOException $e) {
         if ($e->getCode() == '23505') {
-            header('Location: ../../html/cadastro.php?erro=email_duplicado');
+            header('Location: ../html/cadastro.php?erro=email_duplicado');
         } else {
-            header('Location: ../../html/cadastro.php?erro=geral');
+            header('Location: ../html/cadastro.php?erro=geral');
         }
         exit();
     }
