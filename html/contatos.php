@@ -49,7 +49,7 @@
 
                 <div class="form-contato-section">
                     <h2>Envie sua Mensagem</h2>
-                    <form action="#" method="POST" class="contact-form">
+                        <form action="../php/Funcoes/enviar-email.php" method="POST" class="contact-form">    
                         <label for="nome">Nome:</label>
                         <input type="text" id="nome" name="nome" required>
 
