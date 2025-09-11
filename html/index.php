@@ -1,3 +1,11 @@
+<?php
+require_once '../php/conexao.php';
+require_once '../php/Classes/ProdutoClass.php';
+require_once '../php/Classes/CategoriaClass.php';
+$p = new Produto($pdo);
+$c = new Categoria($pdo);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -29,29 +37,35 @@
             <p style="text-align: center; margin-bottom: 2rem;">Confira os itens mais populares entre os nossos clientes.</p>
             
             <div class="galeria-produtos">
-                <article class="produto">
-                    <img src="../img/produto1.png" alt="Produto 1">
-                    <h3>Nome do Produto 1</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 15,90</span>
-                    <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
-                </article>
+                <?php
+                // 1. Busca os produtos APENAS UMA VEZ, antes de começar a exibir
+                $produtos = $p->buscarDados(4);
 
-                <article class="produto">
-                    <img src="../img/produto2.png" alt="Produto 2">
-                    <h3>Nome do Produto 2</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 22,50</span>
-                    <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
-                </article>
-                
-                <article class="produto">
-                    <img src="../img/produto3.png" alt="Produto 3">
-                    <h3>Nome do Produto 3</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 9,99</span>
-                    <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
-                </article>
+                // 2. Verifica se a busca retornou algum produto
+                if ($produtos && count($produtos) > 0) {
+                    // 3. Para CADA produto encontrado, cria um <article> completo
+                    foreach ($produtos as $produto) {
+                        // Prepara a imagem do produto atual para exibição
+                        $imagemBase64 = '';
+                        if (isset($produto['imagem']) && !empty($produto['imagem'])) {
+                            $imagemConteudo = is_resource($produto['imagem']) ? stream_get_contents($produto['imagem']) : $produto['imagem'];
+                            $imagemBase64 = base64_encode($imagemConteudo);
+                        }
+                ?>
+                    <article class="produto">
+                        <img src="data:image/jpeg;base64,<?php echo $imagemBase64; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>">
+                        <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
+                        <p><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                        <span class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></span>
+                        <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
+                    </article>
+                <?php
+                    } // Fim do loop foreach
+                } else {
+                    // Mensagem para o caso de não haver produtos cadastrados
+                    echo "<p>Nenhum produto disponível no momento.</p>";
+                }
+                ?>
             </div>
         </section>
 

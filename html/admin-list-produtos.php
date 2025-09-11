@@ -1,3 +1,11 @@
+<?php
+require_once '../php/Classes/ProdutoClass.php';
+require_once '../php/conexao.php';
+require_once '../php/Classes/CategoriaClass.php';
+$c = new Categoria($pdo);
+$p = new Produto($pdo);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -29,37 +37,58 @@
                 <table class="tabela-admin">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Imagem</th>
-                            <th>Nome do Produto</th>
-                            <th>Preço</th>
+                            <th>Nome Do Produto</th>
                             <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Estoque</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img src="../img/produto1.png" alt="Produto 1" class="tabela-img"></td>
-                            <td>Nome do Produto 1</td>
-                            <td>R$ 15,90</td>
-                            <td>Grãos e Sementes</td>
-                            <td>
-                                <a href="admin-edit-produto.html" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>
-                                <a href="#" class="btn-excluir" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><img src="../img/produto2.png" alt="Produto 2" class="tabela-img"></td>
-                            <td>Nome do Produto 2</td>
-                            <td>R$ 22,50</td>
-                            <td>Temperos</td>
-                            <td>
-                                <a href="admin-edit-produto.html" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>
-                                <a href="#" class="btn-excluir" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
+                        <?php
+                            // Busca os dados dos produtos, incluindo o nome da categoria
+                            $Produto = $p->buscarDados(); 
+
+                            if ($Produto && count($Produto) > 0) {
+                                // Para cada produto encontrado, cria uma linha na tabela
+                                foreach ($Produto as $produto) {
+                                    echo '<tr>';
+                                    
+                                    // Célula para a Imagem do Produto
+                                    // Prepara a imagem para exibição (converte de bytea para Base64)
+                                    $imagemBase64 = '';
+                                    if (isset($produto['imagem']) && !empty($produto['imagem'])) {
+                                        $imagemConteudo = is_resource($produto['imagem']) ? stream_get_contents($produto['imagem']) : $produto['imagem'];
+                                        $imagemBase64 = base64_encode($imagemConteudo);
+                                    }
+                                    echo "<td><img src='data:image/jpeg;base64," . $imagemBase64 . "' alt='" . htmlspecialchars($produto['nome']) . "' style='width: 50px; height: 50px; object-fit: cover; border-radius: 5px;'></td>";
+
+                                    // Célula para o Nome do Produto
+                                    echo '<td>' . htmlspecialchars($produto['nome']) . '</td>';
+
+                                    // Célula para a Categoria
+                                    echo '<td>' . htmlspecialchars($produto['categoria']) . '</td>';
+
+                                    // Célula para o Preço
+                                    echo '<td>R$ ' . number_format($produto['preco'], 2, ',', '.') . '</td>';
+
+                                    // Célula para o Estoque
+                                    echo '<td>' . htmlspecialchars($produto['estoque']) . '</td>';
+
+                                    // Célula para os botões de Ação
+                                    echo '<td>';
+                                    echo '<a href="admin-editar-produtos.php?id=' . $produto['id_produto'] . '" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>';
+                                    echo ' <a href="../php/Funcoes/excluir-produto.php?id=' . $produto['id_produto'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir este produto?\');"><i class="fa-solid fa-trash-can"></i></a>';
+                                    echo '</td>';
+                                    
+                                    echo '</tr>';
+                                }
+                            } else {
+                                // Se não houver produtos, exibe uma mensagem ocupando todas as colunas
+                                echo '<tr><td colspan="6">Ainda não há produtos cadastrados!</td></tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

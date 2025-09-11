@@ -1,7 +1,7 @@
 <?php
-// 1. Inclui a classe e cria o objeto para se conectar ao banco
+require_once '../conexao.php';
 require_once '../Classes/CategoriaClass.php'; 
-$c = new Categoria("TrabalhoPDS", "localhost", "postgres", "172834");
+$c = new Categoria($pdo);
 
 // 2. Verifica se o formulário foi enviado (se existe um 'nome_categoria' no POST)
 if (isset($_POST['nome_categoria'])) {

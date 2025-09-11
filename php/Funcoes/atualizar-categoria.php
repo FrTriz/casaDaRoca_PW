@@ -1,7 +1,7 @@
 <?php
-// 1. Inclui e instancia a classe
+require_once __DIR__ . '/../conexao.php';
 require_once '../Classes/CategoriaClass.php';
-$c = new Categoria("TrabalhoPDS", "localhost", "postgres", "172834");
+$c = new Categoria($pdo);
 
 // 2. Verifica se o formulário foi enviado (método POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -1,19 +1,12 @@
 <?php
+require_once __DIR__ . '/../conexao.php';
     Class Categoria {
         Private $pdo;
 
-        Public function __construct($dbname, $host, $user, $senha) {
-            try {
-                $this->pdo = new PDO("pgsql:dbname=".$dbname.";host=".$host, $user, $senha);
-            } catch (PDOException $e) {
-                echo "Erro ao conectar com o banco de dados: " . $e->getMessage();
-                exit();
-            } catch (Exception $e) {
-                echo "Erro genérico: " . $e->getMessage();
-                exit();
-            }
+        public function __construct(PDO $conexao) {
+            $this->pdo = $conexao;
         }
-        Public function buscarDados() {
+        public function buscarDados() {
             $res = array();
             $cmd = $this->pdo->query("SELECT * FROM categoria ORDER BY id_categoria ");
             $res = $cmd->fetchAll(PDO::FETCH_ASSOC);

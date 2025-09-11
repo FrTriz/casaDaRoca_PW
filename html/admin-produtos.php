@@ -1,3 +1,11 @@
+<?php
+
+    require_once '../php/conexao.php'; 
+    require_once '../php/Classes/CategoriaClass.php';
+    require_once '../php/Classes/ProdutoClass.php';
+    $p = new Produto($pdo);
+    $c = new Categoria($pdo);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,10 +29,10 @@
             <h1 class="form-title" style="text-align: center;">Cadastrar Novo Produto</h1>
             <p style="text-align: center; margin-bottom: 2rem;">Preencha os dados do novo produto para adicioná-lo ao catálogo.</p>
 
-            <form action="cadastrar_produto.php" method="POST" enctype="multipart/form-data" class="admin-form">
+            <form action="../php/Funcoes/add-produto.php" method="POST" enctype="multipart/form-data" class="admin-form">
                 <div class="form-group">
                     <label for="nome_produto">Nome do Produto</label>
-                    <input type="text" id="nome_produto" name="nome_produto" required>
+                    <input type="text" id="nome_produto" name="nome" required>
                 </div>
 
                 <div class="form-group">
@@ -40,13 +48,22 @@
                 <div class="form-group">
                     <label for="categoria">Categoria</label>
                     <select id="categoria" name="categoria" required>
-                        <option value="">Selecione a categoria</option>
-                        <option value="1">Grãos e Sementes</option>
-                        <option value="2">Temperos</option>
-                        <option value="3">Chás</option>
+                       <?php
+                      $categorias = $c->buscarDados();
+                      if ($categorias && count($categorias) > 0) {
+                          foreach ($categorias as $categoria) {
+                              echo '<option value="' . htmlspecialchars($categoria['id_categoria']) . '">' . htmlspecialchars($categoria['nome']) . '</option>';
+                          }
+                      } else {
+                          echo '<option value="">Nenhuma categoria disponível</option>';
+                      }
+                      ?>
                     </select>
                 </div>
-
+                <div class="form-group">
+                    <label for="estoque">Estoque</label>
+                    <input type="number" id="estoque" name="estoque" required>
+                </div>
                 <div class="form-group">
                     <label for="imagem">Imagem do Produto</label>
                     <input type="file" id="imagem" name="imagem" required>

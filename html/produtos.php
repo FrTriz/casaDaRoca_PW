@@ -1,3 +1,10 @@
+<?php
+    require_once '../php/Classes/ProdutoClass.php';
+    require_once '../php/conexao.php';
+    require_once '../php/Classes/CategoriaClass.php';
+    $p = new Produto($pdo);
+    $c = new Categoria($pdo);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,38 +28,36 @@
             <h1 style="text-align: center;">Nossos Produtos</h1>
             <p style="text-align: center; margin-bottom: 2rem;">Conheça nossa seleção de produtos naturais, artesanais e saudáveis.</p>
 
-            <div class="galeria-produtos">
-                <article class="produto">
-                    <img src="../img/produto1.png" alt="Produto 1">
-                    <h3>Nome do Produto 1</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 15,90</span>
-                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 1">Adicionar ao Carrinho</button>
-                </article>
+           <div class="galeria-produtos">
+                <?php
+                // 1. Busca os produtos APENAS UMA VEZ, antes de começar a exibir
+                $produtos = $p->buscarDados();
 
-                <article class="produto">
-                    <img src="../img/produto2.png" alt="Produto 2">
-                    <h3>Nome do Produto 2</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 22,50</span>
-                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 2">Adicionar ao Carrinho</button>
-                </article>
-
-                <article class="produto">
-                    <img src="../img/produto3.png" alt="Produto 3">
-                    <h3>Nome do Produto 3</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 9,99</span>
-                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 3">Adicionar ao Carrinho</button>
-                </article>
-
-                <article class="produto">
-                    <img src="../img/produto4.png" alt="Produto 4">
-                    <h3>Nome do Produto 4</h3>
-                    <p>Breve descrição do produto.</p>
-                    <span class="preco">R$ 35,00</span>
-                    <button class="botao-adicionar-carrinho" data-produto="Nome do Produto 4">Adicionar ao Carrinho</button>
-                </article>
+                // 2. Verifica se a busca retornou algum produto
+                if ($produtos && count($produtos) > 0) {
+                    // 3. Para CADA produto encontrado, cria um <article> completo
+                    foreach ($produtos as $produto) {
+                        // Prepara a imagem do produto atual para exibição
+                        $imagemBase64 = '';
+                        if (isset($produto['imagem']) && !empty($produto['imagem'])) {
+                            $imagemConteudo = is_resource($produto['imagem']) ? stream_get_contents($produto['imagem']) : $produto['imagem'];
+                            $imagemBase64 = base64_encode($imagemConteudo);
+                        }
+                ?>
+                    <article class="produto">
+                        <img src="data:image/jpeg;base64,<?php echo $imagemBase64; ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>">
+                        <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
+                        <p><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                        <span class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></span>
+                        <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
+                    </article>
+                <?php
+                    } // Fim do loop foreach
+                } else {
+                    // Mensagem para o caso de não haver produtos cadastrados
+                    echo "<p>Nenhum produto disponível no momento.</p>";
+                }
+                ?>
             </div>
         </section>
     </main>

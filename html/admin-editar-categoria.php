@@ -1,7 +1,9 @@
 <?php
-// 1. Inclui e instancia a classe
+require_once '../php/conexao.php';
 require_once '../php/Classes/CategoriaClass.php';
-$c = new Categoria("db_casaDaRoca", "localhost", "postgres", "bsi1234");
+require_once '../php/Classes/ProdutoClass.php';
+$c = new Categoria($pdo);
+$p = new Produto($pdo);
 
 // 2. Pega o ID da URL de forma segura
 $id_categoria = isset($_GET['id']) ? (int)$_GET['id'] : 0;

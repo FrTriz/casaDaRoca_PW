@@ -1,7 +1,7 @@
 <?php
 require_once '../php/Classes/CategoriaClass.php';
-$c = new Categoria("db_casaDaRoca", "localhost", "postgres", "bsi1234");
-
+require_once '../php/conexao.php';
+$c = new Categoria($pdo);
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ $c = new Categoria("db_casaDaRoca", "localhost", "postgres", "bsi1234");
                                                     echo '<td>' . htmlspecialchars($categoria['nome']) . '</td>';
                                                     // Adiciona a célula (td) para os botões de Ação
                                                     echo '<td>';
-                                                    echo '<a href="editar-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>';
+                                                    echo '<a href="admin-editar-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>';
                                                     // DEPOIS (O link agora tem o caminho e o ID corretos)
                                                     echo ' <a href="../php/Funcoes/excluir-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir esta categoria?\');"><i class="fa-solid fa-trash-can"></i></a>';
                                                     echo '</td>';
