@@ -1,3 +1,6 @@
+<?php
+require_once dirname(__DIR__) . '/php/Funcoes/verifica-admin.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

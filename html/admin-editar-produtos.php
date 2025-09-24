@@ -1,5 +1,5 @@
 <?php
-
+require_once '../php/Funcoes/verifica-admin.php';
 require_once '../php/conexao.php'; 
 require_once '../php/Classes/ProdutoClass.php';
 require_once '../php/Classes/CategoriaClass.php';
