@@ -9,6 +9,7 @@
                 <li><a href="admin-list-produtos.php">Produtos</a></li>
                 <li><a href="admin-list-usuarios.php">Usuários</a></li>
                 <li><a href="admin-categorias.php">Categorias</a></li>
+                <li><a href="admin-pedidos-recentes.php">Pedidos</a></li>
             </ul>
         </nav>
         <a href="#" class="action-icon" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
