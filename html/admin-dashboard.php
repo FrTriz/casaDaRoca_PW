@@ -16,7 +16,30 @@ require_once dirname(__DIR__) . '/php/Funcoes/verifica-admin.php';
 <body>
 
     <?php
+        // Inclui o cabeçalho do admin para ter a estrutura básica
         include 'admin-header.php';
+
+        // Inclui o arquivo de conexão ao banco de dados
+        require_once '../php/conexao.php'; // Ajuste o caminho conforme a sua estrutura de pastas
+
+        // Consulta SQL para contar o número de produtos
+        $query_produtos = "SELECT COUNT(*) FROM Produto";
+        $stmt_produtos = $pdo->prepare($query_produtos);
+        $stmt_produtos->execute();
+        $total_produtos = $stmt_produtos->fetchColumn();
+
+        // Consulta SQL para contar o número de usuários
+        $query_usuarios = "SELECT COUNT(*) FROM Usuario";
+        $stmt_usuarios = $pdo->prepare($query_usuarios);
+        $stmt_usuarios->execute();
+        $total_usuarios = $stmt_usuarios->fetchColumn();
+
+        // Consulta SQL para contar o número de pedidos
+        $query_pedidos = "SELECT COUNT(*) FROM Pedido";
+        $stmt_pedidos = $pdo->prepare($query_pedidos);
+        $stmt_pedidos->execute();
+        $total_pedidos = $stmt_pedidos->fetchColumn();
+
     ?>
 
     <main>
@@ -27,18 +50,20 @@ require_once dirname(__DIR__) . '/php/Funcoes/verifica-admin.php';
             <div class="dashboard-cards">
                 <div class="dashboard-card">
                     <h3>Produtos Cadastrados</h3>
-                    <p class="card-number">12</p>
-                    <a href="admin-list-produtos.html" class="card-link">Gerenciar produtos</a>
+                    <p class="card-number"><?php echo $total_produtos; ?></p>
+                    <a href="admin-list-produtos.php" class="card-link">Gerenciar produtos</a>
                 </div>
+                
                 <div class="dashboard-card">
                     <h3>Usuários Registrados</h3>
-                    <p class="card-number">5</p>
-                    <a href="admin-list-usuarios.html" class="card-link">Gerenciar usuários</a>
+                    <p class="card-number"><?php echo $total_usuarios; ?></p>
+                    <a href="admin-list-usuarios.php" class="card-link">Gerenciar usuários</a>
                 </div>
+                
                 <div class="dashboard-card">
                     <h3>Pedidos Recentes</h3>
-                    <p class="card-number">3</p>
-                    <a href="#" class="card-link">Ver pedidos</a>
+                    <p class="card-number"><?php echo $total_pedidos; ?></p>
+                    <a href="admin-pedidos.php" class="card-link">Ver pedidos</a>
                 </div>
             </div>
         </section>
