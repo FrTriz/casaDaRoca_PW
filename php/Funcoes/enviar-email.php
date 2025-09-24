@@ -1,39 +1,73 @@
 <?php
-// Inicia o processamento do formulário
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    // Seus dados de e-mail e captura dos campos
-    $destinatario = "seu-email@seudominio.com.br"; // <-- Altere para o seu e-mail
-    $nome = filter_var($_POST['nome'], FILTER_SANITIZE_STRING);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $assunto_form = filter_var($_POST['assunto'], FILTER_SANITIZE_STRING);
-    $mensagem = filter_var($_POST['mensagem'], FILTER_SANITIZE_STRING);
+// Inicia a sessão
+session_start();
 
-    // Validação
-    if (empty($nome) || empty($email) || empty($assunto_form) || empty($mensagem)) {
-        // Redireciona de volta com status de erro (campos vazios)
+// Inclui a conexão com o banco de dados
+require_once '../conexao.php';
+
+// Verifica se a requisição é do tipo POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // CAPTURA E LIMPEZA DOS DADOS 
+    $destinatario = "testecodejoh@gmail.com"; // E-mail que receberá a notificação
+    $nome = htmlspecialchars($_POST['nome']);
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    $assunto_form = htmlspecialchars($_POST['assunto']);
+    $conteudo_msg = htmlspecialchars($_POST['mensagem']);
+
+    // Validação de campos
+    if (empty($nome) || empty($email) || empty($assunto_form) || empty($conteudo_msg)) {
         header("Location: ../../html/email-sucesso.php?status=erro_campos");
         exit;
     }
 
-    // Monta o e-mail
+    try {
+        // Encontrar o id_cliente com base no e-mail
+        $idCliente = null;
+        $stmt = $pdo->prepare("SELECT id_usuario FROM public.usuario WHERE email = ?");
+        $stmt->execute([$email]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            $idCliente = $usuario['id_usuario'];
+        } else {
+            // Se o e-mail não está cadastrado, redireciona com um erro específico
+            header("Location: ../../html/email-sucesso.php?status=erro_cliente");
+            exit;
+        }
+
+        // Definir o administrador de destino
+        $idAdministrador = 1; // Admin padrão
+
+        // Inserir a mensagem no banco de dados
+        $sql = "INSERT INTO public.mensagem (id_cliente, id_administrador, assunto, conteudo, data_envio) 
+                VALUES (?, ?, ?, ?, NOW())";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idCliente, $idAdministrador, $assunto_form, $conteudo_msg]);
+
+    } catch (PDOException $e) {
+        // Se houver um erro no banco, redireciona com status de erro
+        header("Location: ../../html/email-sucesso.php?status=erro_db");
+        exit;
+    }
+
+    // LÓGICA DE ENVIO DE E-MAIL (só executa se o DB funcionou)
     $assunto_email = "Nova Mensagem do Site: " . $assunto_form;
     $corpo_email = "Nome: " . $nome . "\n";
     $corpo_email .= "E-mail: " . $email . "\n";
-    $corpo_email .= "Mensagem:\n" . $mensagem . "\n";
+    $corpo_email .= "Mensagem:\n" . $conteudo_msg . "\n";
     $headers = "From: " . $nome . " <" . $email . ">\r\n" . "Reply-To: " . $email . "\r\n" . "X-Mailer: PHP/" . phpversion();
 
-    // Envia o e-mail
     if (mail($destinatario, $assunto_email, $corpo_email, $headers)) {
-        // Redireciona para a página de confirmação com status de sucesso
+        // Sucesso em ambos: DB e E-mail
         header("Location: ../../html/email-sucesso.php?status=sucesso");
     } else {
-        // Redireciona com status de erro de envio
+        // DB funcionou, mas o e-mail falhou
         header("Location: ../../html/email-sucesso.php?status=erro_envio");
     }
+    exit;
 
 } else {
-    // Se não for POST, nega o acesso.
     die("Acesso inválido.");
 }
 ?>
