@@ -760,3 +760,57 @@ a:hover {
     background-color: var(--laranja-destaque);
     color: var(--branco);
 }
+
+/* ========================================= */
+/* Estilos para a Página de Perfil */
+/* ========================================= */
+
+.perfil-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.perfil-form h2 {
+    color: var(--verde-principal);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--verde-principal);
+    padding-bottom: 0.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group-duplo {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group-duplo .form-group {
+    flex: 1;
+}
+
+.form-group-acoes {
+    margin-top: 2rem;
+}
+
+.form-group-acoes .botao {
+    width: auto;
+    padding: 0.75rem 2rem;
+}
