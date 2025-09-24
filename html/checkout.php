@@ -33,12 +33,18 @@
                         
                         <label for="telefone">Telefone</label>
                         <input type="tel" id="telefone" name="telefone" required>
-                        
-                        <label for="endereco">Endereço</label>
-                        <input type="text" id="endereco" name="endereco" required>
-                        
+
                         <label for="cidade">Cidade</label>
                         <input type="text" id="cidade" name="cidade" value="Feira de Santana" required readonly>
+
+                        <label for="rua_entrega">Rua</label>
+                        <input type="text" id="rua_entrega" name="rua_entrega" required>
+
+                        <label for="numero_entrega">Número</label>
+                        <input type="text" id="numero_entrega" name="numero_entrega" required>
+
+                        <label for="cep_entrega">CEP</label>
+                        <input type="text" id="cep_entrega" name="cep_entrega" required>
 
                         <label for="observacoes">Observações (opcional)</label>
                         <textarea id="observacoes" name="observacoes"></textarea>
@@ -63,7 +69,7 @@
                     </div>
                     <div class="pagamento-info">
                         <h3>Método de Pagamento</h3>
-                        <p>O pagamento será realizado na entrega via PIX ou dinheiro. Você receberá as instruções por e-mail.</p>
+                        <p>O pagamento será realizado na entrega via PIX ou dinheiro.</p>
                     </div>
                 </div>
             </div>
