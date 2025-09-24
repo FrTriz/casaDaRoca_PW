@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <header class="main-header">
     <div class="container main-header-content">
         <div class="user-actions">
@@ -6,8 +11,19 @@
             </a>
             <div id="user-modal" class="user-modal">
                 <div class="modal-content">
-                    <a href="login.php" class="modal-button">Login</a>
-                    <a href="cadastro.php" class="modal-button">Cadastro</a>
+
+                <?php if (isset($_SESSION['usuario_id'])): ?>
+                    
+                        <a href="cliente-perfil.php" class="modal-button">Perfil</a>
+                        <a href="../php/Funcoes/logout-login.php" class="modal-button">Logout</a>
+
+                    <?php else: // Se o usuário NÃO estiver logado ?>
+
+                        <a href="login.php" class="modal-button">Login</a>
+                        <a href="cadastro.php" class="modal-button">Cadastro</a>
+
+                    <?php endif; ?>
+
                 </div>
             </div>
             <a href="carrinho.php" class="action-icon" title="Carrinho de Compras">
