@@ -1,9 +1,23 @@
 <?php
-    require_once '../php/Classes/ProdutoClass.php';
-    require_once '../php/conexao.php';
-    require_once '../php/Classes/CategoriaClass.php';
-    $p = new Produto($pdo);
-    $c = new Categoria($pdo);
+   require_once '../php/Classes/CarrinhoClass.php';
+   require_once '../php/Classes/ProdutoClass.php';
+   require_once '../php/conexao.php';
+   require_once '../php/Classes/CategoriaClass.php';
+   require_once '../php/Classes/UsuarioClass.php';
+   $p = new Produto($pdo);
+   $c = new Categoria($pdo);
+   $car = new Carrinho($pdo);
+   $u = new Usuario($pdo);
+
+    session_start();
+   
+    if (isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] === true) {
+        // Usuário está logado, pode acessar a página
+    } else {
+        // Usuário não está logado, redireciona para a página de login
+        header('Location: login.php');
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -30,12 +44,12 @@
 
            <div class="galeria-produtos">
                 <?php
-                // 1. Busca os produtos APENAS UMA VEZ, antes de começar a exibir
+                // Busca os produtos APENAS UMA VEZ, antes de começar a exibir
                 $produtos = $p->buscarDados();
 
-                // 2. Verifica se a busca retornou algum produto
+                // Verifica se a busca retornou algum produto
                 if ($produtos && count($produtos) > 0) {
-                    // 3. Para CADA produto encontrado, cria um <article> completo
+                    // Para CADA produto encontrado, cria um <article> completo
                     foreach ($produtos as $produto) {
                         // Prepara a imagem do produto atual para exibição
                         $imagemBase64 = '';
@@ -49,7 +63,7 @@
                         <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
                         <p><?php echo htmlspecialchars($produto['descricao']); ?></p>
                         <span class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></span>
-                        <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
+                        <a href="../php/Funcoes/add-carrinho.php" class="botao adicionar-carrinho" data-nome="<?php echo htmlspecialchars($produto['nome']); ?>" data-preco="<?php echo number_format($produto['preco'], 2, ',', '.'); ?>" data-id="<?php echo $produto['id_produto']; ?>">Adicionar ao Carrinho</a>
                     </article>
                 <?php
                     } // Fim do loop foreach
