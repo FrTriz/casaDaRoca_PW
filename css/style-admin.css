@@ -362,3 +362,15 @@ p, li, label, input, textarea, select, button {
     object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
 }
 
+
+
+/* Estilos para o status do pedido */
+.status-pendente {
+    font-weight: bold;
+    color: var(--laranja-destaque);
+}
+
+.status-entregue {
+    font-weight: bold;
+    color: var(--verde-principal);
+}
