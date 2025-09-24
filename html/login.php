@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,19 +14,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
-    </head>
+</head>
 <body>
 
-    <?php
-        include 'cliente-header.php';
-    ?>
+    <?php include 'cliente-header.php'; ?>
 
     <main>
         <section class="secao-conteudo">
             <div class="form-container">
                 <div id="login-form" class="auth-form active">
                     <h1 class="form-title">Entrar</h1>
-                    <form action="login.php" method="POST">
+
+                    <?php if (!empty($_SESSION['erro_login'])): ?>
+                        <p style="color: red; text-align: center;">
+                            <?= htmlspecialchars($_SESSION['erro_login']) ?>
+                        </p>
+                        <?php unset($_SESSION['erro_login']); ?>
+                    <?php endif; ?>
+
+                    <form action="../php/Funcoes/processamento-login.php" method="POST">
                         <label for="login-email">E-mail</label>
                         <input type="email" id="login-email" name="email" required>
 
@@ -36,9 +47,7 @@
         </section>
     </main>
 
-    <?php
-        include 'cliente-footer.php';
-    ?>
+    <?php include 'cliente-footer.php'; ?>
 
     <script src="../script.js"></script>
 </body>
