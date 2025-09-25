@@ -38,12 +38,12 @@ $c = new Categoria($pdo);
             
             <div class="galeria-produtos">
                 <?php
-                // 1. Busca os produtos APENAS UMA VEZ, antes de começar a exibir
+                // Busca os produtos APENAS UMA VEZ, antes de começar a exibir
                 $produtos = $p->buscarDados(4);
 
-                // 2. Verifica se a busca retornou algum produto
+                // Verifica se a busca retornou algum produto
                 if ($produtos && count($produtos) > 0) {
-                    // 3. Para CADA produto encontrado, cria um <article> completo
+                    // Para CADA produto encontrado, cria um <article> completo
                     foreach ($produtos as $produto) {
                         // Prepara a imagem do produto atual para exibição
                         $imagemBase64 = '';
@@ -57,10 +57,13 @@ $c = new Categoria($pdo);
                         <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
                         <p><?php echo htmlspecialchars($produto['descricao']); ?></p>
                         <span class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></span>
-                        <a href="#" class="botao-adicionar-carrinho">Adicionar ao Carrinho</a>
+                            <a href="../php/Funcoes/add-carrinho.php?id=<?php echo $produto['id_produto']; ?>" 
+                                class="botao adicionar-carrinho" 
+                                data-id="<?php echo $produto['id_produto']; ?>" 
+                                data-nome="<?php echo htmlspecialchars($produto['nome']); ?>">Adicionar ao Carrinho</a>
                     </article>
                 <?php
-                    } // Fim do loop foreach
+                    } 
                 } else {
                     // Mensagem para o caso de não haver produtos cadastrados
                     echo "<p>Nenhum produto disponível no momento.</p>";
@@ -84,11 +87,19 @@ $c = new Categoria($pdo);
         </section>
     </main>
 
+    <div id="popup-confirmacao" class="popup-overlay">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <h2>Item Adicionado ao Carrinho!</h2>
+            <p id="popup-message"></p>
+            <a href="carrinho.php" class="botao">Ver Carrinho</a>
+        </div>
+    </div>
     <?php
         include 'cliente-footer.php';
     ?>
 
-    <script src="../script.js"></script>
+       <script src="../script.js?v=<?php echo time(); ?>"></script> 
 
 </body>
 </html>
