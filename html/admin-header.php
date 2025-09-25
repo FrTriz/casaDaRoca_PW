@@ -12,6 +12,6 @@
                 <li><a href="admin-pedidos-recentes.php">Pedidos</a></li>
             </ul>
         </nav>
-        <a href="#" class="action-icon" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a href="../php/Funcoes/logout-login.php" class="action-icon" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></a>
     </div>
 </header>
