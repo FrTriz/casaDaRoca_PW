@@ -100,5 +100,29 @@ class Produto {
         $cmd->execute();
         return $cmd->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function buscarPorTermo($termo, $id_categoria = null) {
+    $termo_busca = '%' . $termo . '%';
+    
+    // A consulta agora usa unaccent() para ignorar acentos na busca
+    $sql = "SELECT p.*, c.nome AS categoria 
+            FROM produto p 
+            JOIN categoria c ON p.id_categoria = c.id_categoria 
+            WHERE (unaccent(p.nome) ILIKE unaccent(:termo) OR unaccent(p.descricao) ILIKE unaccent(:termo))";
+
+    if (!empty($id_categoria)) {
+        $sql .= " AND p.id_categoria = :id_categoria";
+    }
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindParam(':termo', $termo_busca);
+
+    if (!empty($id_categoria)) {
+        $stmt->bindParam(':id_categoria', $id_categoria, PDO::PARAM_INT);
+    }
+    
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>
