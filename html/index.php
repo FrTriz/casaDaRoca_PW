@@ -34,7 +34,7 @@ $c = new Categoria($pdo);
             <div class="container hero-content">
                 <h1 class="hero-title">O gostinho da roça na sua casa</h1>
                 <p class="hero-subtitle">Nossa missão é levar produtos saudáveis e artesanais para você. Conheça a nossa história.</p>
-                <a href="sobre.html" class="botao">Conheça Nossa História</a>
+                <a href="sobre.php" class="botao">Conheça Nossa História</a>
             </div>
         </section>
 
