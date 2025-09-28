@@ -197,6 +197,13 @@ p, li, label, input, textarea, select, button {
     color: var(--laranja-destaque);
 }
 
+.error-message {
+    color: #721c24; /* Vermelho escuro */
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 5px;
+}
+
 /* Botão Hambúrguer (Aparece apenas no mobile) */
 .menu-toggle {
     display: block; 

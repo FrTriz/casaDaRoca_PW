@@ -102,4 +102,67 @@ document.addEventListener('DOMContentLoaded', () => {
         // Para fins de depuração, caso o problema persista
         console.error("ERRO JS: Elemento 'menuToggle' ou 'menuNav' não encontrado.");
     }
+// =========================================
+// Lógica para Validação do Formulário de Cadastro 
+// =========================================
+const formCadastro = document.getElementById('form-cadastro');
+
+if (formCadastro) {
+    const nomeInput = document.getElementById('cadastro-nome');
+    const emailInput = document.getElementById('cadastro-email');
+    const senhaInput = document.getElementById('cadastro-senha');
+
+    const errorNome = document.getElementById('error-nome');
+    const errorEmail = document.getElementById('error-email');
+    const errorSenha = document.getElementById('error-senha');
+
+    // Função para validar o nome
+    const validarNome = () => {
+        if (nomeInput.value.trim().length < 3) {
+            errorNome.textContent = 'O nome deve ter pelo menos 3 caracteres.';
+            return false;
+        }
+        errorNome.textContent = '';
+        return true;
+    };
+
+    // Função para validar o e-mail
+    const validarEmail = () => {
+        const email = emailInput.value.trim();
+        if (!email.includes('@') || !email.includes('.')) {
+            errorEmail.textContent = 'Por favor, insira um e-mail válido.';
+            return false;
+        }
+        errorEmail.textContent = '';
+        return true;
+    };
+
+    // Função para validar a senha
+    const validarSenha = () => {
+        if (senhaInput.value.length < 8) {
+            errorSenha.textContent = 'A senha deve ter pelo menos 8 caracteres.';
+            return false;
+        }
+        errorSenha.textContent = '';
+        return true;
+    };
+
+    // Adiciona "ouvintes" que são acionados enquanto o utilizador digita
+    nomeInput.addEventListener('input', validarNome);
+    emailInput.addEventListener('input', validarEmail);
+    senhaInput.addEventListener('input', validarSenha);
+
+    // Validação final ao tentar submeter o formulário
+    formCadastro.addEventListener('submit', function(event) {
+        // Roda todas as validações uma última vez
+        const nomeValido = validarNome();
+        const emailValido = validarEmail();
+        const senhaValida = validarSenha();
+
+        // Se qualquer uma for inválida, impede o envio
+        if (!nomeValido || !emailValido || !senhaValida) {
+            event.preventDefault();
+        }
+    });
+} 
 });

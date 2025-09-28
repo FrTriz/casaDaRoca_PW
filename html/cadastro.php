@@ -19,23 +19,33 @@
     <main>
         <section class="secao-conteudo">
             <div class="form-container">
-                <div id="cadastro-form" class="auth-form active" style="display: block;">
-                    <h1 class="form-title">Cadastre-se</h1>
-                   <!-- Altere o formulário para: -->
-                        <form action="../php/Funcoes/add-usuario.php" method="POST">
-                            <label for="cadastro-nome">Nome</label>
-                            <input type="text" id="cadastro-nome" name="nome" required>
+               <div id="cadastro-form" class="auth-form active" style="display: block;">
+                <h1 class="form-title">Cadastre-se</h1>
+                
+               <form action="../php/Funcoes/add-usuario.php" method="POST" id="form-cadastro">
+                    <div class="form-group">
+                        <label for="cadastro-nome">Nome</label>
+                        <input type="text" id="cadastro-nome" name="nome" required>
+                        <span class="error-message" id="error-nome"></span>
+                    </div>
 
-                            <label for="cadastro-email">E-mail</label>
-                            <input type="email" id="cadastro-email" name="email" required>
+                    <div class="form-group">
+                        <label for="cadastro-email">E-mail</label>
+                        <input type="email" id="cadastro-email" name="email" required>
+                        <span class="error-message" id="error-email"></span>
+                    </div>
 
-                            <label for="cadastro-senha">Senha</label>
-                            <input type="password" id="cadastro-senha" name="senha" required>
+                    <div class="form-group">
+                        <label for="cadastro-senha">Senha</label>
+                        <input type="password" id="cadastro-senha" name="senha" required>
+                        <span class="error-message" id="error-senha"></span>
+                    </div>
 
-                            <button type="submit" class="botao">Cadastrar</button>
-                        </form>
-                    <p class="form-switch">Já tem conta? <a href="login.php">Faça login</a></p>
-                </div>
+                    <button type="submit" class="botao">Cadastrar</button>
+                </form>
+                
+                <p class="form-switch">Já tem conta? <a href="login.php">Faça login</a></p>
+            </div>
             </div>
         </section>
     </main>
