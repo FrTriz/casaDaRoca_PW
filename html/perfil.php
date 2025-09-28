@@ -120,5 +120,6 @@ $pedidos = $pedido_obj->buscarPorCliente($id_logado);
         </section>
     </main>
     <?php include 'cliente-footer.php'; ?>
+        <script src="../script.js"></script>
 </body>
 </html>
