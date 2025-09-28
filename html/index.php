@@ -1,4 +1,5 @@
 <?php
+require_once '../php/session-manager.php';
 // Antes: require_once '../php/conexao.php';
 require_once '/usr/src/app/php/conexao.php'; 
 

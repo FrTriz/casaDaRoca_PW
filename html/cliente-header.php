@@ -1,6 +1,6 @@
 <?php
 // Garante que a sessão seja iniciada de forma centralizada e segura
-require_once __DIR__ . '/../php/session-manager.php';
+//require_once __DIR__ . '/../php/session-manager.php';
 
 $num_itens_carrinho = isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']) : 0;
 ?>
