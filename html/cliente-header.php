@@ -6,6 +6,9 @@ $num_itens_carrinho = isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']
 ?>
 <header class="main-header">
     <div class="container main-header-content">
+        <button class="menu-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+        </button>
         <div class="user-actions">
             <a href="" class="action-icon" id="user-icon" title="Login/Perfil">
                 <i class="fa-solid fa-user"></i>
@@ -39,7 +42,7 @@ $num_itens_carrinho = isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']
         <a href="index.php" class="logo" title="Ir para a página inicial">
             <img src="../img/logo.png" alt="Logo da Casa da Roça">
         </a>
-        <nav class="menu-nav">
+        <nav class="menu-nav" id="menuNav">
             <ul>
                 <li><a href="produtos.php">Produtos</a></li>
                 <li><a href="contatos.php">Contatos</a></li>
