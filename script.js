@@ -15,22 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
             botao.addEventListener('click', function(event) {
                 event.preventDefault(); 
 
-                // Pega os dados do produto a partir dos atributos do botão
                 const nomeProduto = this.getAttribute('data-nome');
                 const linkAcao = this.href; 
 
-                // Envia a requisição para o PHP em segundo plano
                 fetch(linkAcao)
                     .then(response => response.json())
                     .then(data => {
-                        // "data" é a resposta 
                         if (data.sucesso) {
-                            // Se o PHP confirmou, mostra o pop-up
                             popupMessage.textContent = `"${nomeProduto}" foi adicionado com sucesso.`;
                             popupVerCarrinho.href = 'carrinho.php';
                             popupOverlay.style.display = 'flex';
                         } else {
-                            // Se o PHP devolveu um erro 
                             alert(data.mensagem || 'Ocorreu um erro ao adicionar o produto.');
                         }
                     })
@@ -88,4 +83,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
+
+    // =========================================
+    // Lógica do Menu Hambúrguer (SOLUÇÃO!)
+    // =========================================
+    const menuToggle = document.getElementById('menuToggle');
+    const menuNav = document.getElementById('menuNav');
+
+    if (menuToggle && menuNav) {
+        menuToggle.addEventListener('click', function() {
+            // Alterna a classe 'active' no menu de navegação
+            menuNav.classList.toggle('active');
+            
+            // Opcional: Adiciona/remove a classe para animação do X
+            this.classList.toggle('is-open'); 
+        });
+    } else {
+        // Para fins de depuração, caso o problema persista
+        console.error("ERRO JS: Elemento 'menuToggle' ou 'menuNav' não encontrado.");
+    }
 });
