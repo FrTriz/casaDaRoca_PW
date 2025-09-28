@@ -40,7 +40,7 @@ $num_itens_carrinho = isset($_SESSION['carrinho']) ? count($_SESSION['carrinho']
             </form>
         </div>
         <a href="index.php" class="logo" title="Ir para a página inicial">
-            <img src="../img/logo.png" alt="Logo da Casa da Roça">
+            <img src="/img/logo.png" alt="Logo da Casa da Roça">
         </a>
         <nav class="menu-nav" id="menuNav">
             <ul>
