@@ -11,7 +11,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # 3. INSTALAÇÃO DE EXTENSÕES PHP
-RUN docker-php-ext-install pdo pdo_pgsql mysqli
+RUN docker-php-ext-install pdo pdo_pgsql mysqli gd
 
 # 4. INSTALAÇÃO DO COMPOSER
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
