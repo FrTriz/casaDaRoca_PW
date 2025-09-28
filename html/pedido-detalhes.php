@@ -1,7 +1,7 @@
 <?php
 require_once '../php/session-manager.php';
-require_once '../php/conexao.php';
-require_once '../php/Classes/PedidoClass.php';
+require_once '/usr/src/app/php/conexao.php'; 
+require_once '/usr/src/app/php/Classes/PedidoClass.php';
 
 if (!isset($_SESSION['usuario_id']) || !isset($_GET['id'])) {
     header('Location: login.php');
@@ -26,8 +26,7 @@ if (!$pedido || $pedido['id_cliente'] != $_SESSION['usuario_id']) {
     <meta charset="UTF-8">
     <title>Meu Perfil - Casa da Roça</title>
     
-    <link rel="stylesheet" href="../css/style-cliente.css?v=<?php echo time(); ?>">
-    
+    <link rel="stylesheet" href="/css/style-cliente.css?v=<?php echo time(); ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
@@ -69,6 +68,6 @@ if (!$pedido || $pedido['id_cliente'] != $_SESSION['usuario_id']) {
         </section>
     </main>
     <?php include 'cliente-footer.php'; ?>
-    <script src="../script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>

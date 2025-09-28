@@ -1,9 +1,9 @@
 <?php
 require_once '../php/session-manager.php';
-require_once '../php/conexao.php';
-require_once '../php/Classes/CarrinhoClass.php';
-require_once '../php/Classes/UsuarioClass.php'; 
-require_once '../php/Classes/ClienteClass.php'; 
+require_once '/usr/src/app/php/conexao.php';
+require_once '/usr/src/app/php/Classes/CarrinhoClass.php';
+require_once '/usr/src/app/php/Classes/UsuarioClass.php'; 
+require_once '/usr/src/app/php/Classes/ClienteClass.php';
 
 
 

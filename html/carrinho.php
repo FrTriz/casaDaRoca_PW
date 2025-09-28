@@ -1,7 +1,8 @@
 <?php
+require_once '../php/session-manager.php';
 // Inclui os arquivos necessários
-require_once '../php/conexao.php';
-require_once '../php/Classes/CarrinhoClass.php';
+require_once '/usr/src/app/php/conexao.php'; 
+require_once '/usr/src/app/php/Classes/CarrinhoClass.php';
 
 // Garante que a sessão seja iniciada para ler os dados do carrinho
 if (session_status() === PHP_SESSION_NONE) {
@@ -23,7 +24,7 @@ $subtotal = 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras - Casa da Roça</title>
-    <link rel="stylesheet" href="../css/style-cliente.css">
+    <link rel="stylesheet" href="/css/style-cliente.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
@@ -115,7 +116,7 @@ $subtotal = 0;
     </main>
 
     <?php include 'cliente-footer.php'; ?>
-    <script src="../script.js"></script>
+    <script src="/script.js"></script>
     <?php
     
     if (isset($_GET['status'])) {

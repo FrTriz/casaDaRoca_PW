@@ -23,7 +23,7 @@ if (!$categoria) {
 <head>
     <meta charset="UTF-8">
     <title>Editar Categoria - Admin</title>
-    <link rel="stylesheet" href="../css/style-admin.css">
+    <link rel="stylesheet" href="/css/style-admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     </head>
 <body>

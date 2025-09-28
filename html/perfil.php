@@ -1,9 +1,9 @@
 <?php
 require_once '../php/session-manager.php';
-require_once '../php/conexao.php';
-require_once '../php/Classes/UsuarioClass.php';
-require_once '../php/Classes/ClienteClass.php';
-require_once '../php/Classes/PedidoClass.php';
+require_once '/usr/src/app/php/conexao.php'; 
+require_once '/usr/src/app/php/Classes/UsuarioClass.php';
+require_once '/usr/src/app/php/Classes/ClienteClass.php';
+require_once '/usr/src/app/php/Classes/PedidoClass.php';
 
 // Garante que o utilizador esteja logado
 if (!isset($_SESSION['usuario_id'])) {
@@ -31,7 +31,7 @@ $pedidos = $pedido_obj->buscarPorCliente($id_logado);
     <meta charset="UTF-8">
     <title>Meu Perfil - Casa da Roça</title>
     
-    <link rel="stylesheet" href="../css/style-cliente.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="/css/style-cliente.css?v=<?php echo time(); ?>">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,6 +120,6 @@ $pedidos = $pedido_obj->buscarPorCliente($id_logado);
         </section>
     </main>
     <?php include 'cliente-footer.php'; ?>
-        <script src="../script.js"></script>
+        <script src="/script.js"></script>
 </body>
 </html>
