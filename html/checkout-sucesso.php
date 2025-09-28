@@ -45,7 +45,7 @@ $id_pedido = isset($_GET['pedido']) ? (int)$_GET['pedido'] : 0;
             </div>
         </section>
     </main>
-
+    <script src="../script.js"></script>
     <?php include 'cliente-footer.php'; ?>
 
 </body>

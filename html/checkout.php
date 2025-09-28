@@ -111,5 +111,6 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
         </section>
     </main>
     <?php include 'cliente-footer.php'; ?>
+    <script src="../script.js"></script>
 </body>
 </html>
