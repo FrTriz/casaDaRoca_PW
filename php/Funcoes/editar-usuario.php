@@ -24,11 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt_cliente->bindParam(':id', $id);
         $stmt_cliente->execute();
 
-        header('Location: ../../html/admin-list-usuarios.php');
+        header('Location: /html/admin-list-usuarios.php');
         exit();
 
     } catch (PDOException $e) {
-        header('Location: ../../html/admin-list-usuarios.php?erro=edicao');
+        header('Location: /html/admin-list-usuarios.php?erro=edicao');
         exit();
     }
 }

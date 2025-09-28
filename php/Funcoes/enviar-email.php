@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validação de campos
     if (empty($nome) || empty($email) || empty($assunto_form) || empty($conteudo_msg)) {
-        header("Location: ../../html/email-sucesso.php?status=erro_campos");
+        header("Location: /html/email-sucesso.php?status=erro_campos");
         exit;
     }
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $idCliente = $usuario['id_usuario'];
         } else {
             // Se o e-mail não está cadastrado, redireciona com um erro específico
-            header("Location: ../../html/email-sucesso.php?status=erro_cliente");
+            header("Location: /html/email-sucesso.php?status=erro_cliente");
             exit;
         }
 
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } catch (PDOException $e) {
         // Se houver um erro no banco, redireciona com status de erro
-        header("Location: ../../html/email-sucesso.php?status=erro_db");
+        header("Location: /html/email-sucesso.php?status=erro_db");
         exit;
     }
 
@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mail($destinatario, $assunto_email, $corpo_email, $headers)) {
         // Sucesso em ambos: DB e E-mail
-        header("Location: ../../html/email-sucesso.php?status=sucesso");
+        header("Location: /html/email-sucesso.php?status=sucesso");
     } else {
         // DB funcionou, mas o e-mail falhou
-        header("Location: ../../html/email-sucesso.php?status=erro_envio");
+        header("Location: /html/email-sucesso.php?status=erro_envio");
     }
     exit;
 

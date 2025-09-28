@@ -14,7 +14,7 @@ if (!isset($_SESSION['usuario_logado']) || $_SESSION['usuario_tipo'] !== 'admini
     
     // Redireciona o usuário para a página de login
     // ATENÇÃO: Ajuste o caminho para a sua página de login se necessário
-    header('Location: ../html/login.php');
+    header('Location: /html/login.php');
     
     // Encerra o script para garantir que o resto da página não seja carregado
     exit();

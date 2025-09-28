@@ -9,6 +9,6 @@ $id_produto = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($id_produto > 0) {
     $p->excluir($id_produto);
 }
-header("Location: ../../html/admin-list-produtos.php");
+header("Location: /html/admin-list-produtos.php");
 exit();
 ?>

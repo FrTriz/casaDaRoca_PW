@@ -18,6 +18,6 @@ if (isset($_POST['nome_categoria'])) {
 
 // Após tentar salvar, redireciona o usuário de volta para a página da lista
 // Isso evita que a categoria seja cadastrada novamente se o usuário atualizar a página
-header("Location: ../../html/admin-categorias.php");
+header("Location: /html/admin-categorias.php");
 exit(); 
 ?>

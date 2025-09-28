@@ -18,6 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Redireciona o usuário de volta para a lista principal
-header("Location: ../../html/admin-categorias.php");
+header("Location: /html/admin-categorias.php");
 exit();
 ?>

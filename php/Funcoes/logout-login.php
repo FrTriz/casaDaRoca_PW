@@ -3,5 +3,5 @@ session_start();
 session_unset();
 session_destroy();
 
-header("Location: ../../html/index.php?status=logout-sucesso");
+header("Location: /html/index.php?status=logout-sucesso");
 exit(); 

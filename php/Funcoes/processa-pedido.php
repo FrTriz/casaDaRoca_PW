@@ -4,7 +4,7 @@ require_once '../conexao.php';
 require_once '../Classes/CarrinhoClass.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ../../html/login.php');
+    header('Location: /html/login.php');
     exit();
 }
 
@@ -12,7 +12,7 @@ $carrinho = new Carrinho($pdo);
 $produtosNoCarrinho = $carrinho->listarProdutos();
 
 if (count($produtosNoCarrinho) === 0) {
-    header('Location: ../../html/produtos.php');
+    header('Location: /html/produtos.php');
     exit();
 }
 
@@ -64,13 +64,13 @@ try {
 
     $carrinho->limparCarrinho();
 
-    header('Location: ../../html/checkout-sucesso.php?pedido=' . $id_pedido_criado);
+    header('Location: /html/checkout-sucesso.php?pedido=' . $id_pedido_criado);
     exit();
 
 } catch (Exception $e) {
     $pdo->rollBack();
     error_log("Erro ao processar pedido: " . $e->getMessage());
-    header('Location: ../../html/checkout.php?status=erro');
+    header('Location: /html/checkout.php?status=erro');
     exit();
 }
 ?>
