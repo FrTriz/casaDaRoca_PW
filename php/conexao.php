@@ -15,7 +15,7 @@ $endpoint_id = getenv('DB_ENDPOINT_ID') ?: ''; // O Endpoint é crucial para o N
 $pass_com_endpoint = !empty($endpoint_id) ? "endpoint=$endpoint_id;" . $pass : $pass;
 // 3. Montando a String DSN (Data Source Name)
 // sslmode=require é essencial para a conexão com o Neon.
-$dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
+$dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
