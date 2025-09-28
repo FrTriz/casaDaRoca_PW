@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
     } else {
         // Imagem obrigatória, redireciona com erro
-        header("Location: /html/admin-produtos.php?erro=imagem_obrigatoria");
+        header("Location: /admin-produtos.php?erro=imagem_obrigatoria");
         exit();
     }
 
@@ -51,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Passa a variável $imagemConteudo, que contém a imagem processada
         if ($produto->cadastrar($nome, $descricao, $preco, $estoque, $imagemConteudo, $id_categoria)) {
-            header("Location: /html/admin-produtos.php?status=cadastrado");
+            header("Location: /admin-produtos.php?status=cadastrado");
             exit(); 
         } else {
-            header("Location: /html/admin-produtos.php?erro=produto_existente");
+            header("Location: /admin-produtos.php?erro=produto_existente");
             exit(); 
         }
     } catch (Exception $e) {
-        header("Location: /html/admin-produtos.php?erro=db");
+        header("Location: /admin-produtos.php?erro=db");
         exit();
     }
 }
