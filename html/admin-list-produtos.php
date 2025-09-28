@@ -1,8 +1,8 @@
 <?php
-require_once '../php/Funcoes/verifica-admin.php';
-require_once '../php/Classes/ProdutoClass.php';
-require_once '../php/conexao.php';
-require_once '../php/Classes/CategoriaClass.php';
+require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
+require_once '/usr/src/app/php/Classes/ProdutoClass.php';
+require_once '/usr/src/app/php/conexao.php';
+require_once '/usr/src/app/php/Classes/CategoriaClass.php';
 $c = new Categoria($pdo);
 $p = new Produto($pdo);
 
@@ -13,7 +13,7 @@ $p = new Produto($pdo);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Produtos - Admin</title>
-    <link rel="stylesheet" href="../css/style-admin.css">
+    <link rel="stylesheet" href="/css/style-admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">

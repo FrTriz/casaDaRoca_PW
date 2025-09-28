@@ -1,8 +1,8 @@
 <?php
-require_once '../php/Funcoes/verifica-admin.php';
-require_once '../php/conexao.php';
-require_once '../php/Classes/CategoriaClass.php';
-require_once '../php/Classes/ProdutoClass.php';
+require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
+require_once '/usr/src/app/php/conexao.php';
+require_once '/usr/src/app/php/Classes/CategoriaClass.php';
+require_once '/usr/src/app/php/Classes/ProdutoClass.php';
 $c = new Categoria($pdo);
 $p = new Produto($pdo);
 

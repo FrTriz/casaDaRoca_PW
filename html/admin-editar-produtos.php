@@ -1,8 +1,8 @@
 <?php
-require_once '../php/Funcoes/verifica-admin.php';
-require_once '../php/conexao.php'; 
-require_once '../php/Classes/ProdutoClass.php';
-require_once '../php/Classes/CategoriaClass.php';
+require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
+require_once '/usr/src/app/php/conexao.php';
+require_once '/usr/src/app/php/Classes/ProdutoClass.php';
+require_once '/usr/src/app/php/Classes/CategoriaClass.php';
 
 // Verifica se o ID do produto foi passado na URL
 if (!isset($_GET['id']) || empty($_GET['id'])) {
@@ -42,7 +42,7 @@ if (isset($produto['imagem']) && !empty($produto['imagem'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Produto - Admin</title>
-    <link rel="stylesheet" href="../css/style-admin.css">
+    <link rel="stylesheet" href="/css/style-admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">

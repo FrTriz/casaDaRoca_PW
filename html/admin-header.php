@@ -1,7 +1,7 @@
 <header class="main-header admin-header">
     <div class="container main-header-content">
         <a href="admin-dashboard.php" class="logo" title="Ir para a Dashboard">
-            <img src="../img/logo.png" alt="Logo da Casa da Roça">
+            <img src="/img/logo.png" alt="Logo da Casa da Roça">
         </a>
         <nav class="menu-nav">
             <ul>

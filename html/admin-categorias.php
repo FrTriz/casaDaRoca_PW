@@ -1,7 +1,7 @@
 <?php
-require_once '../php/Funcoes/verifica-admin.php';
-require_once '../php/Classes/CategoriaClass.php';
-require_once '../php/conexao.php';
+require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
+require_once '/usr/src/app/php/Classes/CategoriaClass.php';
+require_once '/usr/src/app/php/conexao.php';
 $c = new Categoria($pdo);
 ?>
 

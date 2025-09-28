@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos - Admin</title>
-    <link rel="stylesheet" href="../css/style-admin.css">
+    <link rel="stylesheet" href="/css/style-admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
                 <tbody>
                     <?php
                     // Inclui o arquivo de conexão
-                    require_once '../php/conexao.php';
+                    require_once '/usr/src/app/php/conexao.php';
 
                     try {
                         // Consulta para buscar os pedidos mais recentes, juntando com a tabela de clientes
