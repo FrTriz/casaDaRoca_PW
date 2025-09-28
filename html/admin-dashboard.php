@@ -63,7 +63,7 @@ require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
                 <div class="dashboard-card">
                     <h3>Pedidos Recentes</h3>
                     <p class="card-number"><?php echo $total_pedidos; ?></p>
-                    <a href="admin-pedidos.php" class="card-link">Ver pedidos</a>
+                    <a href="admin-pedidos-recentes.php" class="card-link">Ver pedidos</a>
                 </div>
             </div>
         </section>
