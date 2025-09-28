@@ -50,51 +50,75 @@ p, li, label, input, textarea, select, button {
 
 .main-header {
     background-color: var(--branco);
-    padding: 1rem 0;
+    padding: 0; /* Controla a altura do header */
     box-shadow: var(--sombra-leve);
 }
 
 .main-header-content {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto;     /* Centraliza o conteúdo */
     padding: 0 1rem;
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Âncora para o dropdown */
 }
 
-/* Estilo da logo para o formato redondo */
 .logo img {
-    height: 100px !important; /* Força a altura */
-    width: 100px !important;  /* Força a largura */
-    border-radius: 50% !important; /* Força o formato circular */
-    object-fit: cover !important; /* Força o ajuste da imagem */
-    display: block !important;
+    height: 70px !important; 
+    width: 70px !important; 
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+/* Menu Dropdown (Mobile First) */
+.menu-nav {
+    display: block; 
+    position: absolute; 
+    top: 100%;       
+    left: 0;
+    width: 100%;     
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.3s ease-out; 
+    background-color: var(--verde-principal); 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 998; 
+}
+
+.menu-nav.active {
+    max-height: 300px; 
 }
 
 .menu-nav ul {
     list-style: none;
-    display: flex;
+    display: block; 
+    padding: 0;
+    margin: 0; /* Zera margens da lista */
+    flex-direction: column; 
 }
 
 .menu-nav ul li a {
     text-decoration: none;
-    color: var(--texto-escuro);
+    color: var(--branco); 
     font-weight: 600;
-    padding: 0 15px;
+    padding: 10px 20px; 
     font-size: 1.1rem;
-    transition: color 0.3s;
+    transition: background-color 0.3s;
+    text-align: left;
+    display: block;
 }
 
 .menu-nav ul li a:hover {
-    color: var(--laranja-destaque);
+    color: var(--branco);
+    background-color: var(--verde-escuro); 
 }
 
 .user-actions {
     display: flex;
     align-items: center;
     gap: 15px;
-    position: relative;
+    position: relative; /* Âncora para o modal de login */
 }
 
 .action-icon {
@@ -109,7 +133,7 @@ p, li, label, input, textarea, select, button {
 }
 
 .search-box {
-    display: flex;
+    display: none; /* Oculto no mobile */
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 50px;
@@ -118,24 +142,28 @@ p, li, label, input, textarea, select, button {
 }
 
 .search-box input {
+    flex-grow: 1; 
     border: none;
     outline: none;
     padding: 0;
 }
 
 .search-box button {
+    flex-shrink: 0; 
     background: none;
     border: none;
     cursor: pointer;
     color: #666;
     font-size: 1.2rem;
+    padding-left: 5px; 
 }
 
 /* Estilo do modal de login/cadastro */
 .user-modal {
     position: absolute;
     top: 50px;
-    left: 0;
+    right: auto; 
+    left: 2px; /* Ajuste manual para alinhamento */
     width: 200px;
     background-color: var(--branco);
     border-radius: 8px;
@@ -167,6 +195,18 @@ p, li, label, input, textarea, select, button {
 .modal-button:hover {
     background-color: var(--cinza-claro);
     color: var(--laranja-destaque);
+}
+
+/* Botão Hambúrguer (Aparece apenas no mobile) */
+.menu-toggle {
+    display: block; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: var(--texto-escuro);
+    padding: 0;
+    margin-right: 10px;
 }
 
 /* ========================================= */
@@ -264,8 +304,6 @@ a:hover {
     padding: 1rem;
     text-align: center;
 }
-
-
 
 /* ========================================= */
 /* Estilos Específicos das Páginas de Cliente */
@@ -402,7 +440,6 @@ a:hover {
 .botao-adicionar-carrinho:hover {
     background-color: #E67A00;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo para o pop-up de confirmação */
@@ -413,7 +450,7 @@ a:hover {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    display: none; /* Esta propriedade esconde o pop-up por padrão */
+    display: none; 
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -709,7 +746,10 @@ a:hover {
     padding-top: 1rem;
 }
 
+/* ========================================= */
 /* Estilos para a Página de Sucesso */
+/* ========================================= */
+
 .success-container {
     display: flex;
     flex-direction: column;
@@ -813,4 +853,225 @@ a:hover {
 .form-group-acoes .botao {
     width: auto;
     padding: 0.75rem 2rem;
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE (Ajustes Finais Mobile/Tablet) */
+/* ========================================= */
+
+/* Mobile Padrão: Ajustes que precisam de prioridade ou não têm breakpoint */
+
+/* Oculta a busca no mobile */
+.search-box {
+    display: none; 
+}
+
+/* Layouts complexos se empilham no mobile */
+.form-group-duplo {
+    flex-direction: column;
+}
+
+
+/* ========================================= */
+/* MOBILE EXTREMO (Até 767px) */
+/* ========================================= */
+@media (max-width: 767px) {
+    
+    /* Header: Garante que a logo, ícones e hambúrguer caibam */
+    .main-header-content {
+        display: grid;
+        /* Colunas: Ícones | Logo (expande) | Hambúrguer */
+        grid-template-columns: auto 1fr auto; 
+        gap: 10px;
+        padding: 0 10px;
+    }
+    
+    .logo {
+        text-align: center;
+        order: 2; /* LOGO permanece no CENTRO */
+    }
+    
+    /* ÍCONES DE AÇÃO (Usuário/Carrinho) - Vão para o lado ESQUERDO */
+    .user-actions {
+        order: 1; /* Coluna 1 */
+        gap: 10px;
+        justify-self: start; 
+    }
+
+    /* MENU HAMBÚRGUER - Vai para o lado DIREITO */
+    .menu-toggle {
+        order: 3; /* Coluna 3 */
+        justify-self: end; 
+    }
+
+    /* Reduz o tamanho da logo no mobile extremo */
+    .logo img {
+        height: 60px !important;
+        width: 60px !important;
+    }
+    
+    /* Reduz o padding do corpo e das seções */
+    .secao-conteudo {
+        padding: 1rem;
+    }
+    
+    /* Ajusta o texto da seção HERO */
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+
+
+/* ========================================= */
+/* BREAKPOINT: TABLET/DESKTOP (MÍNIMO 768px) */
+/* Estrutura de Flexbox: Menu | Logo | Busca/Ícones (Alinhamento Perfeito) */
+/* ========================================= */
+@media (min-width: 768px) {
+    
+    /* 1. CABEÇALHO FLEXBOX */
+    .main-header-content {
+        display: flex; 
+        justify-content: flex-start;
+        align-items: center;
+        
+        padding: 0.8rem 1rem; 
+        gap: 0; 
+    }
+
+    /* Esconde o botão hambúrguer */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Bloco 1: MENU NA ESQUERDA */
+    .menu-nav {
+        display: block !important; 
+        position: static;
+        background: none;
+        box-shadow: none;
+        max-height: none; 
+        overflow: visible;
+        width: auto;
+        padding-top: 0;
+        
+        /* Espaçamento entre Menu e Logo */
+        margin-right: 40px; 
+    }
+    
+    .menu-nav ul {
+        display: flex;
+        flex-direction: row; 
+        justify-content: flex-start;
+        margin: 0; 
+    }
+    
+    .menu-nav ul li a {
+        color: var(--texto-escuro); 
+        padding: 0 15px; 
+        background: none;
+        text-align: center; 
+        display: inline;
+    }
+
+    /* Bloco 2: LOGO NO CENTRO (Truque Flexbox) */
+    .logo {
+        margin-left: auto;
+        margin-right: auto;
+        
+        text-align: center;
+        line-height: 1; 
+    }
+    
+    /* Reduz o tamanho da logo */
+    .logo img {
+        height: 70px !important; 
+        width: 70px !important;
+    }
+
+    .user-actions {
+        /* Pega o espaço entre a logo e as ações */
+        margin-left: 40px; 
+        
+        display: flex; 
+        align-items: center;
+        justify-content: flex-end; 
+        gap: 15px;
+    }
+    
+    .search-box {
+        display: flex;
+        max-width: 180px; 
+        flex-grow: 0;
+        margin-right: 0; 
+    }
+
+    /* 2. LAYOUTS GERAIS */
+    
+    .galeria-produtos {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .form-group-duplo {
+        flex-direction: row;
+    }
+    
+    .info-contato-container {
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+    }
+    
+    .info-item {
+        flex-direction: row;
+        min-width: 200px;
+        margin-bottom: 0;
+    }
+    
+    .footer-content {
+        justify-content: space-between;
+        text-align: left;
+    }
+    .footer-column {
+        text-align: left;
+    }
+    .social-icons {
+        justify-content: flex-start;
+    }
+}
+
+
+/* ========================================= */
+/* BREAKPOINT: DESKTOP GRANDE (MÍNIMO 1024px) */
+/* ========================================= */
+@media (min-width: 1024px) {
+    
+    /* Aumenta a logo para o tamanho final */
+    .logo img {
+        height: 100px !important;
+        width: 100px !important;
+    }
+
+    /* Aumenta o tamanho da busca no desktop */
+    .search-box {
+        max-width: 250px; 
+    }
+    
+    /* Produtos: 4 colunas */
+    .galeria-produtos {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    
+    /* Limita a largura do conteúdo principal */
+    .secao-conteudo {
+        max-width: 1200px;
+        padding: 3rem;
+    }
+    
+    .checkout-form-col, .checkout-resumo-col {
+        flex: 1 1 45%; 
+    }
 }
