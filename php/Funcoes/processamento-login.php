@@ -1,16 +1,19 @@
 <?php
+// 1. INCLUSÃO DE SESSÃO E CONEXÃO (Use o caminho absoluto no arquivo que chama este script!)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once '../conexao.php';
+// ATENÇÃO: Se este arquivo está em 'php/Funcoes', o require_once precisa subir um nível (..) para achar 'conexao.php'
+// Se você está usando o mapeamento do Docker, o ideal é usar o caminho absoluto que funciona no servidor:
+require_once '/usr/src/app/php/conexao.php'; // Verifique se o seu conexao.php está em 'php/conexao.php' ou 'php/Funcoes/conexao.php'
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $email = trim($_POST['email']);
         $senha_digitada = trim($_POST['senha']);
 
-        // Busca o usuário APENAS na tabela 'usuario' para verificar a senha e o tipo
+        // Busca o usuário na tabela 'usuario'
         $sql = "SELECT id_usuario, senha, tipo FROM usuario WHERE email = :email";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
@@ -18,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verifica se o usuário existe e se a senha está correta
+        // 2. CORREÇÃO DE LÓGICA PRINCIPAL: Verifica se o usuário EXISTE antes de verificar a senha.
         if ($usuario && password_verify($senha_digitada, $usuario['senha'])) {
             
             // Login bem-sucedido
@@ -28,41 +31,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Verifica o TIPO de usuário para buscar o nome e redirecionar
             if ($usuario['tipo'] === 'cliente') {
-                // Se for cliente, busca o nome na tabela 'cliente'
+                // Se for cliente, busca o nome
                 $stmt = $pdo->prepare("SELECT nome FROM cliente WHERE id_cliente = :id");
                 $stmt->execute(['id' => $usuario['id_usuario']]);
                 $detalhes = $stmt->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['usuario_nome'] = $detalhes['nome'];
+
+                // CORREÇÃO: Verificação de array para evitar Warning de headers (Linha 45)
+                if ($detalhes) {
+                    $_SESSION['usuario_nome'] = $detalhes['nome'];
+                }
                 
-                header('Location: ../../html/index.php'); // Redireciona cliente
+                // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+                header('Location: /index.php'); 
                 exit;
 
             } elseif ($usuario['tipo'] === 'administrador') {
-                // Se for admin, busca o nome na tabela 'administrador'
+                // Se for admin, busca o nome
                 $stmt = $pdo->prepare("SELECT nome FROM administrador WHERE id_administrador = :id");
                 $stmt->execute(['id' => $usuario['id_usuario']]);
                 $detalhes = $stmt->fetch(PDO::FETCH_ASSOC);
-                $_SESSION['usuario_nome'] = $detalhes['nome'];
 
-                // ATENÇÃO: Altere o caminho para a sua página de admin
-                header('Location: ../../html/admin-dashboard.php'); // Redireciona admin
+                // CORREÇÃO: Verificação de array para evitar Warning de headers (Linha 45)
+                if ($detalhes) {
+                    $_SESSION['usuario_nome'] = $detalhes['nome'];
+                }
+
+                // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+                header('Location: /admin-dashboard.php');
                 exit;
             }
 
         } else {
-            // Falha no login
+            // Falha no login (Usuário não existe OU Senha incorreta)
             $_SESSION['erro_login'] = "E-mail ou senha incorretos.";
-            header('Location: ../../html/login.php');
+            // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+            header('Location: /login.php');
             exit;
         }
 
     } catch (PDOException $e) {
         $_SESSION['erro_login'] = "Erro no sistema. Tente novamente mais tarde.";
-        // Para depuração: error_log("Erro de login: " . $e->getMessage());
-        header('Location: ../../html/login.php');
+        error_log("Erro de login: " . $e->getMessage());
+        // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+        header('Location: /login.php');
         exit;
     }
 } else {
-    header('Location: ../../html/login.php');
+    // Acesso direto ao arquivo de processamento
+    // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+    header('Location: /login.php');
     exit;
 }
+?>
