@@ -1,7 +1,12 @@
 <?php
-require_once '/php/conexao.php';
-require_once '/php/Classes/ProdutoClass.php';
-require_once '/php/Classes/CategoriaClass.php';
+// Antes: require_once '../php/conexao.php';
+require_once '/usr/src/app/php/conexao.php'; 
+
+// Antes: require_once '../php/Classes/ProdutoClass.php';
+require_once '/usr/src/app/php/Classes/ProdutoClass.php';
+
+// Antes: require_once '../php/Classes/CategoriaClass.php';
+require_once '/usr/src/app/php/Classes/CategoriaClass.php';
 $p = new Produto($pdo);
 $c = new Categoria($pdo);
 
@@ -57,7 +62,7 @@ $c = new Categoria($pdo);
                         <h3><?php echo htmlspecialchars($produto['nome']); ?></h3>
                         <p><?php echo htmlspecialchars($produto['descricao']); ?></p>
                         <span class="preco">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></span>
-                            <a href="../php/Funcoes/add-carrinho.php?id=<?php echo $produto['id_produto']; ?>" 
+                            <a href="/php/Funcoes/add-carrinho.php?id=<?php echo $produto['id_produto']; ?>" 
                                 class="botao adicionar-carrinho" 
                                 data-id="<?php echo $produto['id_produto']; ?>" 
                                 data-nome="<?php echo htmlspecialchars($produto['nome']); ?>">Adicionar ao Carrinho</a>
