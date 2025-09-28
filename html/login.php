@@ -33,7 +33,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <?php unset($_SESSION['erro_login']); ?>
                     <?php endif; ?>
 
-                    <form action="/usr/src/app/php/Funcoes/processamento-login.php" method="POST">
+                    <form action="/php/Funcoes/processamento-login.php" method="POST">
                         <label for="login-email">E-mail</label>
                         <input type="email" id="login-email" name="email" required>
 
