@@ -24,12 +24,12 @@ if (isset($_GET['id'])) {
 
         $pdo->commit();
 
-        header('Location: /html/admin-list-usuarios.php?sucesso=excluido');
+        header('Location: /admin-list-usuarios.php?sucesso=excluido');
         exit();
 
     } catch (PDOException $e) {
         $pdo->rollBack();
-        header('Location: /html/admin-list-usuarios.php?erro=exclusao');
+        header('Location: /admin-list-usuarios.php?erro=exclusao');
         exit();
     }
 }

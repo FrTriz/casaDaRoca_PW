@@ -4,9 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// ATENÇÃO: Se este arquivo está em 'php/Funcoes', o require_once precisa subir um nível (..) para achar 'conexao.php'
-// Se você está usando o mapeamento do Docker, o ideal é usar o caminho absoluto que funciona no servidor:
-require_once '/usr/src/app/php/conexao.php'; // Verifique se o seu conexao.php está em 'php/conexao.php' ou 'php/Funcoes/conexao.php'
+require_once '/usr/src/app/php/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {

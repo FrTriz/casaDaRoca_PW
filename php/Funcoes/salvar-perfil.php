@@ -5,7 +5,7 @@ require_once '../Classes/UsuarioClass.php';
 require_once '../Classes/ClienteClass.php';
 
 if (!isset($_SESSION['usuario_id']) || $_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: /html/login.php');
+    header('Location: /login.php');
     exit();
 }
 
@@ -30,9 +30,9 @@ $sucesso_cliente = $cliente_obj->atualizarDados($id_logado, $nome, $rua, $numero
 $sucesso_usuario = $usuario_obj->atualizarEmail($id_logado, $email);
 
 if ($sucesso_cliente && $sucesso_usuario) {
-    header('Location: /html/perfil.php?status=sucesso');
+    header('Location: /perfil.php?status=sucesso');
 } else {
-    header('Location: /html/perfil.php?status=erro');
+    header('Location: /perfil.php?status=erro');
 }
 exit();
 ?>

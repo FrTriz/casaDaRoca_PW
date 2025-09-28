@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_produto = isset($_POST['id_produto']) ? (int)$_POST['id_produto'] : 0;
     $quantidade = isset($_POST['quantidade']) ? (int)$_POST['quantidade'] : 0;
 
-    $url_redirecionamento = '/html/carrinho.php';
+    $url_redirecionamento = '/carrinho.php';
 
     if ($id_produto > 0) {
         $carrinho = new Carrinho($pdo);
@@ -29,6 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Redireciona se o método não for POST
-header('Location: /html/carrinho.php');
+header('Location: /carrinho.php');
 exit();
 ?>

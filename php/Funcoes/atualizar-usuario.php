@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $queryCliente = "UPDATE cliente SET nome=$1 WHERE id_cliente=$2";
     pg_query_params($conn, $queryCliente, array($nome, $id));
 
-    header("Location: admin-list-usuarios.php?msg=atualizado");
+    header("Location: /admin-list-usuarios.php?msg=atualizado");
     exit;
 }
 ?>

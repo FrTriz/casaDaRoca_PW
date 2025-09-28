@@ -14,6 +14,6 @@ if ($id_categoria > 0) {
 }
 
 // Redireciona o usuário de volta para a página da lista, independentemente do que acontecer
-header("Location: /html/admin-categorias.php");
+header("Location: /admin-categorias.php");
 exit();
 ?>

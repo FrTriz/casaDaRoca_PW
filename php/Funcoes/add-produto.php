@@ -64,6 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Se o método não for POST, redireciona para a página principal do admin
-header("Location: /html/admin-produtos.php");
+header("Location: /admin-produtos.php");
 exit();
 ?>

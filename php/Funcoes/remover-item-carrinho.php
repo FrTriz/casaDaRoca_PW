@@ -16,6 +16,6 @@ if ($id_produto > 0) {
 }
 
 // Redireciona de volta para a página do carrinho
-header('Location: /html/carrinho.php');
+header('Location: /carrinho.php');
 exit();
 ?>

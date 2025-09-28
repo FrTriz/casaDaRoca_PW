@@ -26,12 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Chama a função de atualizar, passando os nomes corretos
         if ($p->atualizar($id_produto, $nome, $descricao, $preco, $estoque, $id_categoria, $imagem)) {
             // Se a atualização deu certo, redireciona com status de sucesso
-            header("Location: /html/admin-list-produtos.php?status=sucesso");
+            header("Location: /admin-list-produtos.php?status=sucesso");
             exit();
         }
     }
 }
 
 // Se algo falhar (dados inválidos ou não for POST), redireciona com status de erro
-header("Location: /html/admin-list-produtos.php?status=erro");
+header("Location: /admin-list-produtos.php?status=erro");
 exit();
