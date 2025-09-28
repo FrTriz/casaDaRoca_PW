@@ -55,7 +55,7 @@ if (isset($produto['imagem']) && !empty($produto['imagem'])) {
             <h1 class="form-title" style="text-align: center;">Editar Produto</h1>
             <p style="text-align: center; margin-bottom: 2rem;">Altere os dados do produto abaixo.</p>
 
-            <form action="../php/Funcoes/atualizar-produto.php" method="POST" enctype="multipart/form-data" class="admin-form">
+            <form action="/php/Funcoes/atualizar-produto.php" method="POST" enctype="multipart/form-data" class="admin-form">
                 <input type="hidden" name="id_produto" value="<?php echo htmlspecialchars($produto['id_produto']); ?>">
 
                 <div class="form-group">

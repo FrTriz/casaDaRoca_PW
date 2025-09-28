@@ -37,7 +37,7 @@ if (!$categoria) {
             
             <div class="categoria-form-container" style="margin: auto; max-width: 500px;">
                 <h2 style="color: var(--verde-principal);">Alterar dados</h2>
-                <form action="../php/Funcoes/atualizar-categoria.php" method="POST" class="admin-form">
+                <form action="/php/Funcoes/atualizar-categoria.php" method="POST" class="admin-form">
                     
                     <input type="hidden" name="id_categoria" value="<?php echo $categoria['id_categoria']; ?>">
                     

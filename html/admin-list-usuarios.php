@@ -101,7 +101,7 @@ require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Editar Usuário</h2>
-            <form id="editForm" action="../php/Funcoes/editar-usuario.php" method="POST">
+            <form id="editForm" action="/php/Funcoes/editar-usuario.php" method="POST">
                 <input type="hidden" id="editId" name="id">
                 
                 <label for="editNome">Nome:</label>
@@ -159,7 +159,7 @@ require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
             btn.addEventListener('click', function() {
                 if (confirm('Tem certeza que deseja excluir este usuário?')) {
                     const id = this.dataset.id;
-                    window.location.href = `../php/Funcoes/excluir-usuario.php?id=${id}`;
+                    window.location.href = `/php/Funcoes/excluir-usuario.php?id=${id}`;
                 }
             });
         });

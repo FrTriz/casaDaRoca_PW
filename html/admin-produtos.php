@@ -29,7 +29,7 @@
             <h1 class="form-title" style="text-align: center;">Cadastrar Novo Produto</h1>
             <p style="text-align: center; margin-bottom: 2rem;">Preencha os dados do novo produto para adicioná-lo ao catálogo.</p>
 
-            <form action="../php/Funcoes/add-produto.php" method="POST" enctype="multipart/form-data" class="admin-form">
+            <form action="/php/Funcoes/add-produto.php" method="POST" enctype="multipart/form-data" class="admin-form">
                 <div class="form-group">
                     <label for="nome_produto">Nome do Produto</label>
                     <input type="text" id="nome_produto" name="nome" required>

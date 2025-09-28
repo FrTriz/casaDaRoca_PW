@@ -30,7 +30,7 @@ $c = new Categoria($pdo);
             <div class="categoria-gerenciamento">
                 <div class="categoria-form-container">
                     <h2 style="color: var(--verde-principal);">Nova Categoria</h2>
-                   <form action="../php/Funcoes/add-categoria.php" method="POST" class="admin-form">
+                   <form action="/php/Funcoes/add-categoria.php" method="POST" class="admin-form">
                         <div class="form-group">
                             <label for="nome_categoria">Nome da Categoria</label>
                             <input type="text" id="nome_categoria" name="nome_categoria" required>
@@ -66,7 +66,7 @@ $c = new Categoria($pdo);
                                                     echo '<td>';
                                                     echo '<a href="admin-editar-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>';
                                                     // DEPOIS (O link agora tem o caminho e o ID corretos)
-                                                    echo ' <a href="../php/Funcoes/excluir-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir esta categoria?\');"><i class="fa-solid fa-trash-can"></i></a>';
+                                                    echo ' <a href="/php/Funcoes/excluir-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir esta categoria?\');"><i class="fa-solid fa-trash-can"></i></a>';
                                                     echo '</td>';
                                                     echo '</tr>';
                                                 }    

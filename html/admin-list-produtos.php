@@ -80,7 +80,7 @@ $p = new Produto($pdo);
                                     // Célula para os botões de Ação
                                     echo '<td>';
                                     echo '<a href="admin-editar-produtos.php?id=' . $produto['id_produto'] . '" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>';
-                                    echo ' <a href="../php/Funcoes/excluir-produto.php?id=' . $produto['id_produto'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir este produto?\');"><i class="fa-solid fa-trash-can"></i></a>';
+                                    echo ' <a href="/php/Funcoes/excluir-produto.php?id=' . $produto['id_produto'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir este produto?\');"><i class="fa-solid fa-trash-can"></i></a>';
                                     echo '</td>';
                                     
                                     echo '</tr>';
