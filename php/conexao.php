@@ -13,15 +13,14 @@ $endpoint_id = getenv('DB_ENDPOINT_ID') ?: ''; // O Endpoint é crucial para o N
 // Sua lógica de conexão com o Neon requer que o endpoint_id seja anexado à senha.
 // Vamos manter essa lógica, mas usando as variáveis de ambiente.
 $pass_com_endpoint = !empty($endpoint_id) ? "endpoint=$endpoint_id;" . $pass : $pass;
-
 // 3. Montando a String DSN (Data Source Name)
 // sslmode=require é essencial para a conexão com o Neon.
 $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
 
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false, 
+    PDO::ATTR_EMULATE_PREPARESn => false, 
 ];
 
 try {
