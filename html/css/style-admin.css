@@ -374,3 +374,199 @@ p, li, label, input, textarea, select, button {
     font-weight: bold;
     color: var(--verde-principal);
 }
+
+/* ========================================= */
+/* Estilização do Topo do Admin (Mobile First) */
+/* ========================================= */
+
+/* Oculta o menu de navegação de texto no mobile por padrão */
+.admin-header .menu-nav {
+    display: none; 
+    
+    /* Configuração do Dropdown */
+    position: absolute;
+    top: 100%; /* Posiciona abaixo do header */
+    left: 0;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--verde-principal);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+}
+
+/* Estado ativo do Dropdown (adicionado pelo JS) */
+.admin-header .menu-nav.active {
+    max-height: 300px; 
+}
+
+/* Estilo dos links no dropdown */
+.admin-header .menu-nav ul {
+    flex-direction: column; /* Links empilham */
+    padding: 10px 0;
+}
+
+.admin-header .menu-nav ul li a {
+    color: var(--branco); 
+    padding: 10px 20px;
+    text-align: left;
+    display: block;
+}
+
+/* Botão Hambúrguer: Visível no mobile, empurra os itens para a esquerda */
+.menu-toggle {
+    display: block; 
+    margin-left: auto; /* Truque para empurrar para o canto (se os ícones estiverem à esquerda) */
+    font-size: 1.8rem;
+    color: var(--laranja-destaque);
+}
+
+/* Reduz o padding do cabeçalho no mobile */
+.admin-header {
+    padding: 0.5rem 0;
+}
+
+/* Cards da Dashboard: Força o empilhamento vertical */
+.dashboard-cards {
+    flex-direction: column; 
+    gap: 1rem;
+}
+
+.dashboard-card {
+    width: 100%; 
+    max-width: none;
+    padding: 1.5rem;
+}
+
+
+/* Formulários: Botões em coluna no mobile */
+.admin-form .form-actions {
+    flex-direction: column; 
+    gap: 1rem;
+}
+
+.admin-form .botao, .admin-form .botao-secundario {
+    width: 100%; 
+    max-width: none;
+}
+
+/* Gerenciamento de Categoria: Empilha formulário e tabela */
+.categoria-gerenciamento {
+    flex-direction: column; 
+    gap: 2rem;
+}
+
+/* Tabelas: Garante que as tabelas sejam totalmente scrolláveis horizontalmente */
+.tabela-admin-container {
+    overflow-x: auto;
+    width: 100%;
+}
+.tabela-admin {
+    min-width: 600px; /* Garante largura mínima para scroll */
+}
+
+/* Reduz o padding geral no mobile */
+.secao-conteudo {
+    padding: 1.5rem;
+    margin: 1rem auto;
+}
+
+/* ========================================= */
+/* BREAKPOINT: TABLET/DESKTOP (MÍNIMO 768px) */
+/* ========================================= */
+@media (min-width: 768px) {
+    
+    /* 1. CABEÇALHO - Restaura a navegação horizontal */
+    
+    /* Esconde o botão hambúrguer no desktop */
+    .menu-toggle {
+        display: none; 
+    }
+    
+    /* Mostra o menu de links no desktop */
+    .admin-header .menu-nav {
+        display: flex !important; 
+        position: static;
+        background: none;
+        max-height: none;
+        flex-grow: 1; /* Ocupa o espaço central */
+    }
+    
+    .admin-header .menu-nav ul {
+        flex-direction: row; 
+        padding: 0;
+        margin-left: 2rem; /* Espaço entre a logo e o menu */
+    }
+
+    .admin-header .menu-nav ul li a {
+        color: var(--laranja-destaque);
+        padding: 0 15px;
+        text-align: center;
+        display: inline-block;
+    }
+
+    /* Logo: Aumenta um pouco */
+    .admin-header .logo img {
+        height: 80px;
+        width: 80px;
+    }
+    
+    /* 2. DASHBOARD - 3 Cartões por Linha */
+    .dashboard-cards {
+        flex-direction: row; 
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    
+    .dashboard-card {
+        /* Permite 3 cartões por linha, com espaçamento adequado */
+        flex: 1 1 calc(33.33% - 1.5rem); 
+        width: auto;
+    }
+
+    /* 3. LAYOUTS - Volta a ser lado a lado */
+    
+    /* Formulários: Botões voltam a ser lado a lado */
+    .admin-form .form-actions {
+        flex-direction: row; 
+        justify-content: flex-end; 
+    }
+
+    .admin-form .botao, .admin-form .botao-secundario {
+        width: auto;
+        max-width: 200px; 
+    }
+
+    /* Gerenciamento de Categoria: Volta ao layout lado a lado */
+    .categoria-gerenciamento {
+        flex-direction: row; 
+        gap: 3rem;
+    }
+
+    .categoria-form-container {
+        flex: 1;
+        min-width: 350px; 
+    }
+
+    .categoria-gerenciamento .tabela-admin-container {
+        flex: 2; 
+    }
+}
+
+
+/* ----------------------------------------- */
+/* BREAKPOINT: DESKTOP GRANDE (MÍNIMO 1024px) */
+/* ----------------------------------------- */
+@media (min-width: 1024px) {
+
+    /* Logo: Restaura o tamanho original */
+    .admin-header .logo img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .dashboard-card {
+        max-width: 320px; 
+    }
+}

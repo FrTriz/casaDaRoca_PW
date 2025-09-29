@@ -3,7 +3,10 @@
         <a href="admin-dashboard.php" class="logo" title="Ir para a Dashboard">
             <img src="/img/logo.png" alt="Logo da Casa da Roça">
         </a>
-        <nav class="menu-nav">
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <nav class="menu-nav" id="menuNav">
             <ul>
                 <li><a href="admin-dashboard.php">Dashboard</a></li>
                 <li><a href="admin-list-produtos.php">Produtos</a></li>
