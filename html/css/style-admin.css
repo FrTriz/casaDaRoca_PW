@@ -381,24 +381,20 @@ p, li, label, input, textarea, select, button {
 
 /* Oculta o menu de navegação de texto no mobile por padrão */
 .admin-header .menu-nav {
-    /* CRÍTICO: Usa Flex para que os links internos se organizem */
-    display: flex; 
-    
-    /* Configuração do Dropdown */
-    position: absolute;
-    top: 100%; 
+    display: flex; /* Mantém flex para organização interna */
+    position: fixed; 
+    top: 70px; /* Ajuste este valor se o cabeçalho for mais alto/baixo */
     left: 0;
     width: 100%;
-    
-    /* VISIBILIDADE E TRANSIÇÃO */
-    max-height: 0; /* Oculta o menu verticalmente */
-    opacity: 0; /* NOVO: Torna o menu transparente quando está fechado */
-    visibility: hidden; /* NOVO: Garante que o menu não seja interativo quando fechado */
+    /* VISIBILIDADE E TRANSIÇÃO (Mantenha o resto) */
+    max-height: 0; 
+    opacity: 0; 
+    visibility: hidden; 
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s; 
     
     background-color: var(--verde-principal);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    z-index: 9999; /* Z-Index máximo para evitar sobreposição */
+    z-index: 9999; /* Garante que fique acima de tudo */
 }
 
 /* Estado ativo do Dropdown (adicionado pelo JS) */
