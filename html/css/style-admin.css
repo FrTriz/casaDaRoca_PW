@@ -318,10 +318,14 @@ p, li, label, input, textarea, select, button {
 
 .btn-editar {
     color: var(--laranja-destaque);
+    border: none;
+    background: none;
 }
 
 .btn-excluir {
     color: #f00;
+    border: none;
+    background: none;
 }
 
 .categoria-gerenciamento {
