@@ -504,6 +504,7 @@ p, li, label, input, textarea, select, button {
         opacity: 1; /* Garante que não está transparente */
         visibility: visible; /* Garante que não está escondido */
         flex-grow: 1; /* Permite que ocupe o espaço central */
+        box-shadow: none;
     }
 
     .admin-header .menu-nav ul {
