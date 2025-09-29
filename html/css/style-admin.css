@@ -383,15 +383,10 @@ p, li, label, input, textarea, select, button {
 .admin-header .menu-nav {
     display: flex; /* Mantém flex para organização interna */
     position: fixed; 
-    top: 70px; /* Ajuste este valor se o cabeçalho for mais alto/baixo */
+    top: 120px; /* Ajuste este valor se o cabeçalho for mais alto/baixo */
     left: 0;
     width: 100%;
-    /* VISIBILIDADE E TRANSIÇÃO (Mantenha o resto) */
-    max-height: 0; 
-    opacity: 0; 
-    visibility: hidden; 
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s; 
-    
     background-color: var(--verde-principal);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Garante que fique acima de tudo */
