@@ -381,30 +381,37 @@ p, li, label, input, textarea, select, button {
 
 /* Oculta o menu de navegação de texto no mobile por padrão */
 .admin-header .menu-nav {
-    display: none; 
+    /* CRÍTICO: Usa Flex para que os links internos se organizem */
+    display: flex; 
     
     /* Configuração do Dropdown */
     position: absolute;
-    top: 100%; /* Posiciona abaixo do header */
+    top: 100%; 
     left: 0;
     width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    
+    /* VISIBILIDADE E TRANSIÇÃO */
+    max-height: 0; /* Oculta o menu verticalmente */
+    opacity: 0; /* NOVO: Torna o menu transparente quando está fechado */
+    visibility: hidden; /* NOVO: Garante que o menu não seja interativo quando fechado */
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s; 
+    
     background-color: var(--verde-principal);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    z-index: 998;
+    z-index: 9999; /* Z-Index máximo para evitar sobreposição */
 }
 
 /* Estado ativo do Dropdown (adicionado pelo JS) */
 .admin-header .menu-nav.active {
-    max-height: 500px;  
+    max-height: 500px; /* Expande o menu */
+    opacity: 1; /* Torna o menu visível */
+    visibility: visible; /* Torna o menu interativo */
 }
 
 /* Estilo dos links no dropdown */
 .admin-header .menu-nav ul {
-    flex-direction: column; /* Links empilham */
-    padding: 10px 0;
+    width: 100%; /* Garante que a lista preencha a largura do menu */
+    flex-direction: column;
 }
 
 .admin-header .menu-nav ul li a {
