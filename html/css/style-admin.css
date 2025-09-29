@@ -488,32 +488,35 @@ p, li, label, input, textarea, select, button {
 /* ========================================= */
 @media (min-width: 768px) {
     
-    /* 1. CABEÇALHO - Restaura a navegação horizontal */
-    
     /* Esconde o botão hambúrguer no desktop */
     .menu-toggle {
         display: none; 
     }
     
-    /* Mostra o menu de links no desktop */
-    .admin-header .menu-nav {
-        display: flex !important; 
-        position: static;
-        background: none;
-        max-height: none;
-        flex-grow: 1; /* Ocupa o espaço central */
-    }
+    /* 1. CABEÇALHO - Restaura a navegação horizontal */
     
-    .admin-header .menu-nav ul {
-        flex-direction: row; 
-        padding: 0;
-        margin-left: 2rem; /* Espaço entre a logo e o menu */
+    .admin-header .menu-nav {
+        /* CRÍTICO: Sobrescreve o display: none e as propriedades do dropdown */
+        display: flex !important; 
+        position: static; /* Volta ao fluxo normal */
+        background: none;
+        max-height: none; /* Desliga o max-height: 0 */
+        opacity: 1; /* Garante que não está transparente */
+        visibility: visible; /* Garante que não está escondido */
+        flex-grow: 1; /* Permite que ocupe o espaço central */
     }
 
+    .admin-header .menu-nav ul {
+        /* Garante que os links fiquem na linha */
+        flex-direction: row; 
+        padding: 0;
+        margin-left: 2rem; 
+    }
+    
     .admin-header .menu-nav ul li a {
+        /* Restaura a cor de link de desktop */
         color: var(--laranja-destaque);
         padding: 0 15px;
-        text-align: center;
         display: inline-block;
     }
 
