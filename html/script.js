@@ -165,4 +165,137 @@ if (formCadastro) {
         }
     });
 } 
+
+// =========================================
+// Lógica para Validação do Formulário de Checkout 
+// =========================================
+const formCheckout = document.getElementById('form-checkout');
+
+if (formCheckout) {
+    // Seleciona todos os campos e locais para mensagens de erro
+    const nomeInput = document.getElementById('checkout-nome');
+    const emailInput = document.getElementById('checkout-email');
+    const telefoneInput = document.getElementById('checkout-telefone');
+    const ruaInput = document.getElementById('rua_entrega');
+
+    const errorNome = document.getElementById('error-checkout-nome');
+    const errorEmail = document.getElementById('error-checkout-email');
+    const errorTelefone = document.getElementById('error-checkout-telefone');
+    const errorRua = document.getElementById('error-checkout-rua');
+
+    // --- Funções de Validação Individuais ---
+    const validarNome = () => {
+        if (nomeInput.value.trim().length < 3) {
+            errorNome.textContent = 'O nome completo é obrigatório.';
+            return false;
+        }
+        errorNome.textContent = '';
+        return true;
+    };
+
+    const validarEmail = () => {
+        if (!emailInput.value.trim().includes('@')) {
+            errorEmail.textContent = 'Por favor, insira um e-mail válido.';
+            return false;
+        }
+        errorEmail.textContent = '';
+        return true;
+    };
+
+    const validarTelefone = () => {
+        if (telefoneInput.value.trim().length < 9) {
+            errorTelefone.textContent = 'Por favor, insira um telefone válido.';
+            return false;
+        }
+        errorTelefone.textContent = '';
+        return true;
+    };
+
+    const validarRua = () => {
+        if (ruaInput.value.trim() === '') {
+            errorRua.textContent = 'O campo rua é obrigatório.';
+            return false;
+        }
+        errorRua.textContent = '';
+        return true;
+    };
+
+    // --- Adiciona os "ouvintes" para validar em tempo real ---
+    nomeInput.addEventListener('input', validarNome);
+    emailInput.addEventListener('input', validarEmail);
+    telefoneInput.addEventListener('input', validarTelefone);
+    ruaInput.addEventListener('input', validarRua);
+
+    // --- Validação Final ao Submeter ---
+    formCheckout.addEventListener('submit', function(event) {
+        // Roda todas as validações uma última vez para garantir
+        const formularioValido = validarNome() && validarEmail() && validarTelefone() && validarRua();
+
+        if (!formularioValido) {
+            event.preventDefault(); // Impede o envio se algo estiver inválido
+        }
+    });
+}
+
+// =========================================
+// Lógica para Validação do Formulário de Contacto 
+// =========================================
+const formContato = document.getElementById('form-contato');
+
+if (formContato) {
+    // Seleciona os campos e os locais para as mensagens de erro
+    const nomeInput = document.getElementById('contato-nome');
+    const emailInput = document.getElementById('contato-email');
+    const assuntoInput = document.getElementById('contato-assunto');
+    const mensagemInput = document.getElementById('contato-mensagem');
+
+    const errorNome = document.getElementById('error-contato-nome');
+    const errorEmail = document.getElementById('error-contato-email');
+    const errorAssunto = document.getElementById('error-contato-assunto');
+    const errorMensagem = document.getElementById('error-contato-mensagem');
+
+    // --- Funções de Validação Individuais ---
+    const validarNome = () => {
+        if (nomeInput.value.trim() === '') {
+            errorNome.textContent = 'O campo nome é obrigatório.';
+            return false;
+        }
+        errorNome.textContent = '';
+        return true;
+    };
+
+    const validarEmail = () => {
+        if (!emailInput.value.trim().includes('@')) {
+            errorEmail.textContent = 'Por favor, insira um e-mail válido.';
+            return false;
+        }
+        errorEmail.textContent = '';
+        return true;
+    };
+
+    const validarAssunto = () => {
+        if (assuntoInput.value.trim() === '') {
+            errorAssunto.textContent = 'O campo assunto é obrigatório.';
+            return false;
+        }
+        errorAssunto.textContent = '';
+        return true;
+    };
+
+    // --- Adiciona os "ouvintes" para validar em tempo real ---
+    nomeInput.addEventListener('input', validarNome);
+    emailInput.addEventListener('input', validarEmail);
+    assuntoInput.addEventListener('input', validarAssunto);
+    mensagemInput.addEventListener('input', validarMensagem);
+
+    // --- Validação Final ao Submeter ---
+    formContato.addEventListener('submit', function(event) {
+        // Roda todas as validações uma última vez para garantir
+        const formularioValido = validarNome() && validarEmail() && validarAssunto() && validarMensagem();
+
+        if (!formularioValido) {
+            event.preventDefault(); // Impede o envio se algo estiver inválido
+        }
+    });
+}
 });

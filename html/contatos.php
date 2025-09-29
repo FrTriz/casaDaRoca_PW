@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa da Roça - Produtos Naturais</title>
-    <link rel="stylesheet" href="/css/style-cliente.css">
+    <link rel="stylesheet" href="../css/style-cliente.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
@@ -49,21 +49,34 @@
 
                 <div class="form-contato-section">
                     <h2>Envie sua Mensagem</h2>
-                        <form action="../php/Funcoes/enviar-email.php" method="POST" class="contact-form">    
-                        <label for="nome">Nome:</label>
-                        <input type="text" id="nome" name="nome" required>
+                      <form action="../php/Funcoes/enviar-email.php" method="POST" id="form-contato"> 
+                            
+                            <div class="form-group">
+                                <label for="contato-nome">Nome:</label>
+                                <input type="text" id="contato-nome" name="nome" required>
+                                <span class="error-message" id="error-contato-nome"></span>
+                            </div>
 
-                        <label for="email">E-mail:</label>
-                        <input type="email" id="email" name="email" required>
+                            <div class="form-group">
+                                <label for="contato-email">E-mail:</label>
+                                <input type="email" id="contato-email" name="email" required>
+                                <span class="error-message" id="error-contato-email"></span>
+                            </div>
 
-                        <label for="assunto">Assunto:</label>
-                        <input type="text" id="assunto" name="assunto" required>
+                            <div class="form-group">
+                                <label for="contato-assunto">Assunto:</label>
+                                <input type="text" id="contato-assunto" name="assunto" required>
+                                <span class="error-message" id="error-contato-assunto"></span>
+                            </div>
 
-                        <label for="mensagem">Mensagem:</label>
-                        <textarea id="mensagem" name="mensagem" required></textarea>
+                            <div class="form-group">
+                                <label for="contato-mensagem">Mensagem:</label>
+                                <textarea id="contato-mensagem" name="mensagem" required></textarea>
+                                <span class="error-message" id="error-contato-mensagem"></span>
+                            </div>
 
-                        <button type="submit" class="botao">Enviar Mensagem</button>
-                    </form>
+                            <button type="submit" class="botao">Enviar Mensagem</button>
+                        </form>
                 </div>
             </div>
         </section>
@@ -73,6 +86,6 @@
         include 'cliente-footer.php';
     ?>
 
-    <script src="/script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>

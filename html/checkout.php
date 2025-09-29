@@ -1,9 +1,9 @@
 <?php
 require_once '../php/session-manager.php';
-require_once '/usr/src/app/php/conexao.php';
-require_once '/usr/src/app/php/Classes/CarrinhoClass.php';
-require_once '/usr/src/app/php/Classes/UsuarioClass.php'; 
-require_once '/usr/src/app/php/Classes/ClienteClass.php';
+require_once '../php/conexao.php';
+require_once '../php/Classes/CarrinhoClass.php';
+require_once '../php/Classes/UsuarioClass.php'; 
+require_once '../php/Classes/ClienteClass.php'; 
 
 
 
@@ -49,32 +49,41 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
 
             <div class="checkout-container">
                 <div class="checkout-form-col">
-                    <form action="../php/Funcoes/processa-pedido.php" method="POST">
+                    <form action="../php/Funcoes/processa-pedido.php" method="POST" id="form-checkout">
                         <h2>Dados de Entrega</h2>
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" name="nome_completo" required value="<?php echo htmlspecialchars($cliente_info['nome'] ?? ''); ?>">
 
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" name="email_contato" required value="<?php echo htmlspecialchars($usuario_info['email'] ?? ''); ?>">
+                        <div class="form-group">
+                            <label for="checkout-nome">Nome Completo</label>
+                            <input type="text" id="checkout-nome" name="nome_completo" required value="<?php echo htmlspecialchars($cliente_info['nome'] ?? ''); ?>">
+                            <span class="error-message" id="error-checkout-nome"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="checkout-email">E-mail</label>
+                            <input type="email" id="checkout-email" name="email_contato" required value="<?php echo htmlspecialchars($usuario_info['email'] ?? ''); ?>">
+                            <span class="error-message" id="error-checkout-email"></span>
+                        </div>
                         
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone" name="telefone" required value="<?php echo htmlspecialchars($cliente_info['telefone'] ?? ''); ?>">
+                        <div class="form-group">
+                            <label for="checkout-telefone">Telefone</label>
+                            <input type="tel" id="checkout-telefone" name="telefone" required value="<?php echo htmlspecialchars($cliente_info['telefone'] ?? ''); ?>">
+                            <span class="error-message" id="error-checkout-telefone"></span>
+                        </div>
                         
-                        <label for="cidade">Cidade</label>
-                        <input type="text" id="cidade" name="cidade" value="Feira de Santana" required readonly>
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" value="Feira de Santana" required readonly>
+                            </div>
 
-                        <label for="rua_entrega">Rua</label>
-                        <input type="text" id="rua_entrega" name="rua" required value="<?php echo htmlspecialchars($cliente_info['rua'] ?? ''); ?>">
-
-                        <label for="numero_entrega">Número</label>
-                        <input type="text" id="numero_entrega" name="numero" required value="<?php echo htmlspecialchars($cliente_info['numero'] ?? ''); ?>">
-
-                        <label for="cep_entrega">CEP</label>
-                        <input type="text" id="cep_entrega" name="cep" required value="<?php echo htmlspecialchars($cliente_info['cep'] ?? ''); ?>">
+                        <div class="form-group">
+                            <label for="rua_entrega">Rua</label>
+                            <input type="text" id="rua_entrega" name="rua" required value="<?php echo htmlspecialchars($cliente_info['rua'] ?? ''); ?>">
+                            <span class="error-message" id="error-checkout-rua"></span>
+                        </div>
 
                         <label for="observacoes">Observações (opcional)</label>
                         <textarea id="observacoes" name="observacoes"></textarea>
-                    
+
                         <button type="submit" class="botao" style="margin-top: 1.5rem;">Finalizar Compra</button>
                     </form>
                 </div>
