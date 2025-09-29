@@ -395,6 +395,9 @@ p, li, label, input, textarea, select, button {
     background-color: var(--verde-principal);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 9999; /* Garante que fique acima de tudo */
+    border: none;
+    background-color: none
+    ;
 }
 
 /* Estado ativo do Dropdown (adicionado pelo JS) */
