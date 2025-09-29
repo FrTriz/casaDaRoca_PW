@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // =========================================
-    // Lógica do Menu Hambúrguer (SOLUÇÃO!)
-    // =========================================
+    // Lógica do Menu HambúrguerS
+    // ========================================
     const menuToggle = document.getElementById('menuToggle');
     const menuNav = document.getElementById('menuNav');
 

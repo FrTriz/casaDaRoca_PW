@@ -72,5 +72,6 @@ require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
     <?php
         include 'admin-footer.php';
     ?>
+    <script src="/script.js"></script>
 </body>
 </html>

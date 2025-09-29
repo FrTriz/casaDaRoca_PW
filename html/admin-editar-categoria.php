@@ -54,5 +54,6 @@ if (!$categoria) {
     <?php
         include 'admin-footer.php';
     ?>
+    <script src="/script.js"></script>
 </body>
 </html>

@@ -165,5 +165,6 @@ require_once '/usr/src/app/php/Funcoes/verifica-admin.php';
         });
     });
     </script>
+    <script src="/script.js"></script>
 </body>
 </html>
