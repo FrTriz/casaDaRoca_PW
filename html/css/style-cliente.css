@@ -1118,10 +1118,10 @@ a:hover {
     
     .footer-content {
         justify-content: space-between;
-        text-align: left;
+        text-align: center;
     }
     .footer-column {
-        text-align: left;
+        text-align: center;
     }
     .social-icons {
         justify-content: flex-start;
