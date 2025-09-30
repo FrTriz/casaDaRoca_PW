@@ -4,9 +4,9 @@
             <h3 class="footer-logo">Casa da Roça</h3>
             <p>O gostinho da roça na sua casa. Produtos saudáveis, artesanais e de qualidade.</p>
             <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/casadaroca.1?igsh=anQ2Z2Z1cjU2bDBq"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.facebook.com/casadaroca"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://wa.me/5575999823413"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
         <div class="footer-column">
