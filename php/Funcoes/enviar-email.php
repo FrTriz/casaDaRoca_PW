@@ -1,73 +1,91 @@
 <?php
-// Inicia a sessão
-session_start();
+// Usar o PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Inclui a conexão com o banco de dados
+// Incluir os arquivos do PHPMailer
+require '../PHPMailer/Exception.php';
+require '../PHPMailer/PHPMailer.php';
+require '../PHPMailer/SMTP.php';
+
+// Incluir os seus arquivos
 require_once '../conexao.php';
+require_once '../session-manager.php';
 
-// Verifica se a requisição é do tipo POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // CAPTURA E LIMPEZA DOS DADOS 
-    $destinatario = "testecodejoh@gmail.com"; // E-mail que receberá a notificação
-    $nome = htmlspecialchars($_POST['nome']);
-    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $assunto_form = htmlspecialchars($_POST['assunto']);
-    $conteudo_msg = htmlspecialchars($_POST['mensagem']);
+    // CAPTURA E LIMPEZA DOS DADOS
+    $nome = htmlspecialchars(trim($_POST['nome']));
+    $email_remetente = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
+    $assunto_form = htmlspecialchars(trim($_POST['assunto']));
+    $conteudo_msg = htmlspecialchars(trim($_POST['mensagem']));
 
-    // Validação de campos
-    if (empty($nome) || empty($email) || empty($assunto_form) || empty($conteudo_msg)) {
-        header("Location: /email-sucesso.php?status=erro_campos");
+    if (empty($nome) || empty($email_remetente) || empty($assunto_form) || empty($conteudo_msg)) {
+        header("Location: ../../html/email-sucesso.php?status=erro_campos");
         exit;
     }
 
     try {
-        // Encontrar o id_cliente com base no e-mail
+
+        // Tenta encontrar o id_cliente com base no e-mail
         $idCliente = null;
-        $stmt = $pdo->prepare("SELECT id_usuario FROM public.usuario WHERE email = ?");
-        $stmt->execute([$email]);
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt_user = $pdo->prepare("SELECT id_usuario FROM usuario WHERE email = ?");
+        $stmt_user->execute([$email_remetente]);
+        $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario) {
             $idCliente = $usuario['id_usuario'];
         } else {
-            // Se o e-mail não está cadastrado, redireciona com um erro específico
-            header("Location: /email-sucesso.php?status=erro_cliente");
-            exit;
+            // Se o e-mail não estiver cadastrado, pode decidir o que fazer.
+            // Por agora, vamos permitir o envio, mas não associar a um cliente.
+            // Numa versão futura, poderia guardar o e-mail diretamente na tabela de mensagens.
         }
 
-        // Definir o administrador de destino
-        $idAdministrador = 1; // Admin padrão
+        // Se encontrou um cliente, salva a mensagem associada a ele
+        if ($idCliente) {
+            $idAdministrador = 1; // Admin padrão
+            $sql = "INSERT INTO mensagem (id_cliente, id_administrador, assunto, conteudo, data_envio) 
+                    VALUES (?, ?, ?, ?, NOW())";
+            $stmt_msg = $pdo->prepare($sql);
+            $stmt_msg->execute([$idCliente, $idAdministrador, $assunto_form, $conteudo_msg]);
+        }
+        
+        $mail = new PHPMailer(true);
 
-        // Inserir a mensagem no banco de dados
-        $sql = "INSERT INTO public.mensagem (id_cliente, id_administrador, assunto, conteudo, data_envio) 
-                VALUES (?, ?, ?, ?, NOW())";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$idCliente, $idAdministrador, $assunto_form, $conteudo_msg]);
+        // Configurações do servidor SMTP (Gmail)
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'testecodejoh@gmail.com'; 
+        $mail->Password = 'rwag tyhn ifnw ekep'; 
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port = 465;
+        $mail->CharSet = 'UTF-8';
 
-    } catch (PDOException $e) {
-        // Se houver um erro no banco, redireciona com status de erro
-        header("Location: /email-sucesso.php?status=erro_db");
+        // Destinatários
+        $mail->setFrom('testecodejoh@gmail.com', 'Notificação do Site');
+        $mail->addAddress('testecodejoh@gmail.com', 'Administrador');
+        $mail->addReplyTo($email_remetente, $nome);
+
+        // Conteúdo do e-mail
+        $mail->isHTML(false);
+        $mail->Subject = "Nova Mensagem: " . $assunto_form;
+        $mail->Body    = "Você recebeu uma nova mensagem do seu site:\n\n" .
+                         "Nome: " . $nome . "\n" .
+                         "E-mail: " . $email_remetente . "\n\n" .
+                         "Mensagem:\n" . $conteudo_msg;
+
+        $mail->send();
+        
+        // Sucesso: Redireciona para a página de contatos com status de sucesso
+        header("Location: ../../html/email-sucesso.php?status=sucesso");
+        exit;
+
+    } catch (Exception $e) {
+        // Se ocorrer qualquer erro (seja no banco de dados ou no envio do e-mail)
+        // error_log("Erro no formulário de contato: " . $e->getMessage()); // Para depuração
+        header("Location: ../../html/email-sucesso.php?status=erro_envio");
         exit;
     }
-
-    // LÓGICA DE ENVIO DE E-MAIL (só executa se o DB funcionou)
-    $assunto_email = "Nova Mensagem do Site: " . $assunto_form;
-    $corpo_email = "Nome: " . $nome . "\n";
-    $corpo_email .= "E-mail: " . $email . "\n";
-    $corpo_email .= "Mensagem:\n" . $conteudo_msg . "\n";
-    $headers = "From: " . $nome . " <" . $email . ">\r\n" . "Reply-To: " . $email . "\r\n" . "X-Mailer: PHP/" . phpversion();
-
-    if (mail($destinatario, $assunto_email, $corpo_email, $headers)) {
-        // Sucesso em ambos: DB e E-mail
-        header("Location: /email-sucesso.php?status=sucesso");
-    } else {
-        // DB funcionou, mas o e-mail falhou
-        header("Location: /email-sucesso.php?status=erro_envio");
-    }
-    exit;
-
-} else {
-    die("Acesso inválido.");
 }
 ?>
