@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Passa a variável $imagemConteudo, que contém a imagem processada
         if ($produto->cadastrar($nome, $descricao, $preco, $estoque, $imagemConteudo, $id_categoria)) {
-            header("Location: /admin-produtos.php?status=cadastrado");
+            header("Location: /admin-list-produtos.php?status=cadastrado");
             exit(); 
         } else {
             header("Location: /admin-produtos.php?erro=produto_existente");
