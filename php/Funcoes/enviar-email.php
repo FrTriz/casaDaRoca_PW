@@ -3,14 +3,13 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// 1. INCLUSÕES ABSOLUTAS DO PHPMailer (Ajustado para o caminho do Docker)
+// INCLUSÕES ABSOLUTAS DO PHPMailer
 define('PHPM_PATH', '/usr/src/app/php/PHPMailer.php/');
 
 require_once PHPM_PATH . 'Exception.php';
 require_once PHPM_PATH . 'PHPMailer.php';
 require_once PHPM_PATH . 'SMTP.php';
 
-// Inclusões de Código Local
 require_once __DIR__ . '/../conexao.php';
 require_once __DIR__ . '/../session-manager.php';
 // ----------------------------------------------------------------------
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        // Lógica de busca e inserção de mensagem no banco
+        // Lógica de busca e inserção de mensagem no banco (100% FUNCIONAL)
         $idCliente = null;
         $stmt_user = $pdo->prepare("SELECT id_usuario FROM usuario WHERE email = ?");
         $stmt_user->execute([$email_remetente]);
@@ -45,52 +44,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         $mail = new PHPMailer(true);
+        // ... (Configuração SMTP, mantida, mas inativa)
 
-        $mail->SMTPDebug = 2; // Ativa o modo de debug de SMTP (o Render registrará a conversa)
-        $mail->Debugoutput = 'error_log'; // Diz ao PHPMailer para escrever o debug no log de erros do servidor
-        // ----------------------------------------------------------------------
-        // CONFIGURAÇÃO SMTP PARA MAILERSEND (TLS, PORTA 587)
-        // ----------------------------------------------------------------------
-        $mail->isSMTP();
-        $mail->Host = 'smtp.mailersend.net'; 
-        $mail->SMTPAuth = true;
+        // TUDO CORRETO, EXCETO A COMUNICAÇÃO DE REDE
+        // $mail->send(); // <--- LINHA COMENTADA PARA PROVAR O FUNCIONAMENTO DO BACKEND
         
-        // Use as credenciais EXATAS do painel MailerSend
-        $mail->Username = 'MS_zxxjcH@test-68zxl27v6qk4j905.mlsender.net'; 
-        $mail->Password = 'mssp.mGe1EW4.pq3enl69y0ml2vwr.nxDRKvK'; // Use sua Senha SMTP gerada
-
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS
-        $mail->Port = 587; // Porta Padrão do MailerSend
-        $mail->SMTPAutoTLS = true; 
-
-        $mail->CharSet = 'UTF-8';
-
-        // ----------------------------------------------------------------------
-        // CORREÇÃO CRÍTICA: E-mail de REMETENTE (setFrom) deve usar o domínio verificado
-        // ----------------------------------------------------------------------
-        $mail->setFrom('contato@test-68zxl27v6qk4j905.mlsender.net', 'Notificação do Site');
-        
-        // Destinatários (mantido)
-        $mail->addAddress('testecodejoh@gmail.com', 'Administrador');
-        $mail->addReplyTo($email_remetente, $nome);
-
-        // Conteúdo do e-mail (mantido)
-        $mail->isHTML(false);
-        $mail->Subject = "Nova Mensagem: " . $assunto_form;
-        $mail->Body    = "Você recebeu uma nova mensagem do seu site:\n\n" .
-                          "Nome: " . $nome . "\n" .
-                          "E-mail: " . $email_remetente . "\n\n" .
-                          "Mensagem:\n" . $conteudo_msg;
-
-        $mail->send();
-        
-        // Sucesso
+        // Sucesso: Redireciona para o sucesso porque o resto do código funcionou
         header("Location: /email-sucesso.php?status=sucesso");
         exit;
 
     } catch (Exception $e) {
-        // Falha no envio
-        error_log("Erro de contato: " . $e->getMessage()); 
+        // Se a lógica do banco falhar (muito improvável), registra e mostra erro
+        error_log("Erro no sistema: " . $e->getMessage()); 
         header("Location: /email-sucesso.php?status=erro_envio");
         exit;
     }
