@@ -1,3 +1,15 @@
+<?php
+
+require_once '../php/session-manager.php';
+require_once '../php/conexao.php';
+require_once '../php/Classes/PedidoClass.php'; // Inclua a classe Pedido
+require_once '../php/Funcoes/verifica-admin.php'; // Verifica se é admin
+
+
+$pedido_obj = new Pedido($pdo);
+
+$pedidos = $pdo->query("SELECT p.id_pedido, c.nome AS nome_cliente, p.data_pedido, p.status FROM pedido p JOIN cliente c ON p.id_cliente = c.id_cliente ORDER BY p.data_pedido DESC")->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,85 +23,50 @@
     <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <?php
-        include 'admin-header.php';
-    ?>
-
-<main>
-    <section class="secao-conteudo">
-        <h1 class="admin-title">Pedidos Recentes</h1>
-        <p class="admin-subtitle">Lista de todos os pedidos realizados no site.</p>
-        
-        <div class="tabela-admin-container">
-            <table class="tabela-admin">
-                <thead>
-                    <tr>
-                        <th>ID do Pedido</th>
-                        <th>Cliente</th>
-                        <th>Data do Pedido</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Inclui o arquivo de conexão
-                    require_once '/usr/src/app/php/conexao.php';
-
-                    try {
-                        // Consulta para buscar os pedidos mais recentes, juntando com a tabela de clientes
-                        $query = "
-                            SELECT
-                                p.id_pedido,
-                                c.nome AS nome_cliente,
-                                p.data_pedido,
-                                p.status
-                            FROM
-                                pedido p
-                            JOIN
-                                cliente c ON p.id_cliente = c.id_cliente
-                            ORDER BY
-                                p.data_pedido DESC
-                            LIMIT 10;
-                        ";
-                        
-                        $stmt = $pdo->query($query);
-                        $pedidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        if ($pedidos) {
-                            foreach ($pedidos as $pedido) {
-                                // Define a classe CSS do status
-                                $class_status = '';
-                                if ($pedido['status'] == 'pendente') {
-                                    $class_status = 'status-pendente';
-                                } elseif ($pedido['status'] == 'entregue') {
-                                    $class_status = 'status-entregue';
-                                }
-
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($pedido['id_pedido']) . "</td>";
-                                echo "<td>" . htmlspecialchars($pedido['nome_cliente']) . "</td>";
-                                echo "<td>" . htmlspecialchars($pedido['data_pedido']) . "</td>";
-                                echo "<td><span class='$class_status'>" . htmlspecialchars($pedido['status']) . "</span></td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='4'>Nenhum pedido encontrado.</td></tr>";
-                        }
-                    } catch (PDOException $e) {
-                        echo "<tr><td colspan='4'>Erro ao carregar pedidos: " . $e->getMessage() . "</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
-</main>
-
-
-    <?php
-        include 'admin-footer.php';
-    ?>
-    <script src="/script.js"></script>
+    <?php include 'admin-header.php'; ?>
+    <main>
+        <section class="secao-conteudo">
+            <h1 class="admin-title">Gerir Pedidos</h1>
+            <p class="admin-subtitle">Altere o status dos pedidos abaixo.</p>
+            
+            <div class="tabela-admin-container">
+                <table class="tabela-admin">
+                    <thead>
+                        <tr>
+                            <th>ID do Pedido</th>
+                            <th>Cliente</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($pedidos): ?>
+                            <?php foreach ($pedidos as $pedido): ?>
+                                <tr>
+                                    <td>#<?php echo $pedido['id_pedido']; ?></td>
+                                    <td><?php echo htmlspecialchars($pedido['nome_cliente']); ?></td>
+                                    <td><?php echo date('d/m/Y H:i', strtotime($pedido['data_pedido'])); ?></td>
+                                    <td>
+                                        <form action="../php/Funcoes/atualizar-status-pedido.php" method="GET">
+                                            <input type="hidden" name="id" value="<?php echo $pedido['id_pedido']; ?>">
+                                            <select name="status" onchange="this.form.submit()">
+                                                <option value="pendente" <?php if($pedido['status'] == 'pendente') echo 'selected'; ?>>Pendente</option>
+                                                <option value="entregue" <?php if($pedido['status'] == 'entregue') echo 'selected'; ?>>Entregue</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                    <td><a href="admin-pedido-detalhes.php?id=<?php echo $pedido['id_pedido']; ?>">Ver Detalhes</a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr><td colspan="5">Nenhum pedido encontrado.</td></tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <?php include 'admin-footer.php'; ?>
 </body>
 </html>

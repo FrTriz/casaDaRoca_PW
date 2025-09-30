@@ -39,5 +39,17 @@ class Pedido {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function atualizarStatus($id_pedido, $novo_status) {
+        
+        if ($novo_status !== 'pendente' && $novo_status !== 'entregue') {
+            return false;
+        }
+
+        $sql = "UPDATE Pedido SET status = :status WHERE id_pedido = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':status', $novo_status);
+        $stmt->bindParam(':id', $id_pedido, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }
 ?>
