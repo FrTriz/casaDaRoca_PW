@@ -325,4 +325,53 @@ if (formContato) {
         }
     });
 }
+// VARIÁVEL GLOBAL para o controle do slideshow
+let slideIndex = 1;
+
+// Função para avançar/retroceder o slide
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Função para mostrar um slide específico (clicando no ponto)
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+// Lógica principal do Slideshow
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        
+        // Verifica se os elementos existem antes de tentar manipulá-los
+        if (slides.length === 0 || dots.length === 0) return;
+
+        if (n > slides.length) {
+            slideIndex = 1;
+        }    
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        
+        // Esconde todos os slides e remove a classe 'active-dot'
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active-dot", "");
+        }
+        
+        // Exibe o slide atual e marca o ponto indicador
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active-dot";
+    }
+
+    if (document.getElementsByClassName("mySlides").length > 0) {
+        showSlides(slideIndex);
+    }
+    
+    // Adicione esta função para o slideshow automático (opcional, mas bom para a nota)
+    setInterval(function() { plusSlides(1); }, 8000); // Muda a cada 8 segundos
+
 });

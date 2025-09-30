@@ -17,6 +17,28 @@
     ?>
 
     <main>
+        <section class="slideshow-secao">
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <img src="../img/slide1-produtos-frescos.jpg" style="width:100%" alt="Produtos frescos e orgânicos">
+                    <div class="slideshow-caption">Qualidade e procedência dos produtos</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="../img/slide2-fazenda.jpg" style="width:100%" alt="Visão da fazenda e produtores locais">
+                    <div class="slideshow-caption">Valorização de produtores locais</div>
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+            </div>
+        </section>
         <section class="secao-conteudo">
             <h1 style="text-align: center;">Sobre a Casa da Roça</h1>
             <p style="text-align: center; margin-bottom: 2rem;">A Casa da Roça está estruturando sua loja física e já atua há 1 ano e 7 meses no segmento de produtos naturais e alimentação saudável.</p>
