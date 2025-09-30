@@ -50,12 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // CONFIGURAÇÃO SMTP CORRIGIDA PARA STARTTLS (PORTA 587)
         // ----------------------------------------------------------------------
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
+        $mail->Host = 'smtp.mailersend.net';
         $mail->SMTPAuth = true;
         
         // **ATENÇÃO: Substitua pelo seu Username e a NOVA SENHA DE APLICATIVO**
-        $mail->Username = 'testecodejoh@gmail.com'; 
-        $mail->Password = 'flmh xlpl tnyd rsnu'; // <--- O VALOR CRÍTICO
+        $mail->Username = 'MS_zxxcjH@test-68zxl27v6qk4j905.mlsender.net'; 
+        $mail->Password = 'mssp.mGe1EW4.pq3enl69y0ml2vwr.nxDRKvK'; // <--- O VALOR CRÍTICO
         
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Usa STARTTLS
         $mail->Port = 587; // Porta padrão para STARTTLS
