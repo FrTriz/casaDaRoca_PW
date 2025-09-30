@@ -681,21 +681,21 @@ a:hover {
 .main-footer {
     background-color: var(--verde-rodape);
     color: var(--branco);
-    padding: 2rem 0;
+    padding: 2rem 0; /* Espaçamento menor na vertical */
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; /* Distribui as colunas */
     flex-wrap: wrap;
     padding-bottom: 1.5rem;
 }
 
 .footer-column {
     flex: 1;
-    min-width: 200px;
+    min-width: 250px; /* Garante que as colunas não fiquem muito estreitas */
     margin: 1rem;
-    text-align: center;
+    text-align: left; /* Alinha o conteúdo à ESQUERDA (padrão de leitura) */
 }
 
 .footer-column h3 {
@@ -703,12 +703,13 @@ a:hover {
     color: var(--laranja-destaque);
     margin-bottom: 0.5rem;
     font-weight: 600;
+    text-align: left; /* Garante que o título da coluna fique alinhado à esquerda */
 }
 
 .footer-column p, .footer-column ul {
     font-size: 0.9rem;
     line-height: 1.5;
-    text-align: center;
+    text-align: left; /* Alinha o texto à esquerda */
 }
 
 .footer-column ul {
@@ -733,13 +734,13 @@ a:hover {
 .social-icons {
     margin-top: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha os ícones à ESQUERDA */
 }
 
 .social-icons a {
     color: var(--branco);
     font-size: 1.5rem;
-    margin: 0 7px;
+    margin: 0 7px 0 0; /* Remove a margem da direita para alinhar */
     transition: color 0.3s ease;
 }
 
