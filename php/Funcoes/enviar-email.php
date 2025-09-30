@@ -46,6 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $mail = new PHPMailer(true);
 
+        $mail->SMTPDebug = 2; // Ativa o modo de debug de SMTP (o Render registrará a conversa)
+        $mail->Debugoutput = 'error_log'; // Diz ao PHPMailer para escrever o debug no log de erros do servidor
         // ----------------------------------------------------------------------
         // CONFIGURAÇÃO SMTP PARA MAILERSEND (TLS, PORTA 587)
         // ----------------------------------------------------------------------
