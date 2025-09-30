@@ -20,13 +20,18 @@
         <section class="slideshow-secao">
             <div class="slideshow-container">
                 <div class="mySlides fade">
-                    <img src="../img/slide1-produtos-frescos.jpg" style="width:100%" alt="Produtos frescos e orgânicos">
+                    <img src="/img/produtos.jpg" style="width:100%" alt="Produtos frescos e orgânicos">
                     <div class="slideshow-caption">Qualidade e procedência dos produtos</div>
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="../img/slide2-fazenda.jpg" style="width:100%" alt="Visão da fazenda e produtores locais">
+                    <img src="/img/mesa_de_cafe.jpg" style="width:100%" alt="Visão da fazenda e produtores locais">
                     <div class="slideshow-caption">Valorização de produtores locais</div>
+                </div>
+
+                <div class="mySlides fade">
+                    <img src="/img/geleias-e-compotas-1.jpg" style="width:100%" alt="Geleias e compotas artesanais">
+                    <div class="slideshow-caption">Geleias e compotas artesanais</div>
                 </div>
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
