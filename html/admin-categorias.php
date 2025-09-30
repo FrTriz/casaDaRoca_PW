@@ -55,17 +55,12 @@ $c = new Categoria($pdo);
                                     $categorias = $c->buscarDados(); // Busca os dados do banco
 
                                         if ($categorias && count($categorias) > 0) {
-                                              // Para cada categoria encontrada, crie uma linha na tabela
                                               foreach ($categorias as $categoria) {
                                                  echo '<tr>';
-                                                    // Adiciona a célula (td) para o ID
                                                     echo '<td>' . htmlspecialchars($categoria['id_categoria']) . '</td>';
-                                                    // Adiciona a célula (td) para o Nome
                                                     echo '<td>' . htmlspecialchars($categoria['nome']) . '</td>';
-                                                    // Adiciona a célula (td) para os botões de Ação
                                                     echo '<td>';
                                                     echo '<a href="admin-editar-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-editar" title="Editar"><i class="fa-solid fa-pen"></i></a>';
-                                                    // DEPOIS (O link agora tem o caminho e o ID corretos)
                                                     echo ' <a href="/php/Funcoes/excluir-categoria.php?id=' . $categoria['id_categoria'] . '" class="btn-excluir" title="Excluir" onclick="return confirm(\'Tem certeza que deseja excluir esta categoria?\');"><i class="fa-solid fa-trash-can"></i></a>';
                                                     echo '</td>';
                                                     echo '</tr>';
