@@ -1126,7 +1126,7 @@ a:hover {
         text-align: left;
     }
     .social-icons {
-        justify-content: flex-start;
+        justify-content: center;
     }
 }
 
