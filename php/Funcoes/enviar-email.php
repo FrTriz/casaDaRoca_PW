@@ -61,10 +61,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Conteúdo do e-mail (mantido)
         $mail->isHTML(false);
         $mail->Subject = "Nova Mensagem: " . $assunto_form;
-        $mail->Body    = "Você recebeu uma nova mensagem do seu site:\n\n" .
-                          "Nome: " . $nome . "\n" .
-                          "E-mail: " . $email_remetente . "\n\n" .
-                          "Mensagem:\n" . $conteudo_msg;
+        $mail->Body = "Você recebeu uma nova mensagem do seu site:\n\n" .
+                    "Nome: " . $nome . "\n" .
+                    "E-mail: " . $email_remetente . "\n\n" .
+                    "Mensagem:\n" . $conteudo_msg;
 
         $mail->send();
         
