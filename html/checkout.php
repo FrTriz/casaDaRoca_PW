@@ -5,7 +5,7 @@ require_once '../php/Classes/CarrinhoClass.php';
 require_once '../php/Classes/UsuarioClass.php'; 
 require_once '../php/Classes/ClienteClass.php';
 
-// Garante que o utilizador esteja logado para aceder ao checkout
+
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php?redirect=checkout.php');
     exit();
@@ -14,13 +14,12 @@ if (!isset($_SESSION['usuario_id'])) {
 $carrinho_obj = new Carrinho($pdo);
 $produtosNoCarrinho = $carrinho_obj->listarProdutos();
 
-// Se o carrinho estiver vazio, redireciona para a página de produtos
+
 if (count($produtosNoCarrinho) === 0) {
     header('Location: produtos.php');
     exit();
 }
 
-// Busca os dados do cliente e do utilizador para pré-preencher o formulário
 $cliente_obj = new Cliente($pdo);
 $usuario_obj = new Usuario($pdo);
 $cliente_info = $cliente_obj->buscarPorId($_SESSION['usuario_id']);
@@ -30,10 +29,14 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Finalizar Compra - Casa da Roça</title>
-    <link rel="stylesheet" href="../css/style-cliente.css?v=<?php echo time(); ?>">
-    <!-- Outros links -->
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa da Roça - Produtos Naturais</title>
+    <link rel="stylesheet" href="/css/style-cliente.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
+    </head>
 <body>
     <?php include 'cliente-header.php'; ?>
     <main>
@@ -43,7 +46,7 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
 
             <div class="checkout-container">
                 <div class="checkout-form-col">
-                    <!-- Formulário preparado para a validação JS -->
+
                     <form action="../php/Funcoes/processa-pedido.php" method="POST" id="form-checkout">
                         <h2>Dados de Entrega</h2>
                         

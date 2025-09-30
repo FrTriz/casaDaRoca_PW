@@ -4,17 +4,14 @@ require_once '../php/session-manager.php';
 require_once '/usr/src/app/php/conexao.php'; 
 require_once '/usr/src/app/php/Classes/CarrinhoClass.php';
 
-// Garante que a sessão seja iniciada para ler os dados do carrinho
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Cria uma instância da sua classe Carrinho
 $carrinho = new Carrinho($pdo);
-// Usa o seu método para buscar todos os produtos do carrinho de uma só vez
 $produtosNoCarrinho = $carrinho->listarProdutos();
 
-// Inicializa a variável para o cálculo do subtotal
+
 $subtotal = 0;
 ?>
 
