@@ -166,6 +166,7 @@ if (formCadastro) {
     });
 } 
 
+
 // =========================================
 // Lógica para Validação do Formulário de Checkout 
 // =========================================
@@ -177,12 +178,16 @@ if (formCheckout) {
     const emailInput = document.getElementById('checkout-email');
     const telefoneInput = document.getElementById('checkout-telefone');
     const ruaInput = document.getElementById('rua_entrega');
+    const numeroInput = document.getElementById('numero_entrega');
+    const cepInput = document.getElementById('cep_entrega');
 
     const errorNome = document.getElementById('error-checkout-nome');
     const errorEmail = document.getElementById('error-checkout-email');
     const errorTelefone = document.getElementById('error-checkout-telefone');
     const errorRua = document.getElementById('error-checkout-rua');
-
+    const errorNumero = document.getElementById('error-checkout-numero');
+    const errorCep = document.getElementById('error-checkout-cep');
+    
     // --- Funções de Validação Individuais ---
     const validarNome = () => {
         if (nomeInput.value.trim().length < 3) {
@@ -220,16 +225,38 @@ if (formCheckout) {
         return true;
     };
 
+    const validarNumero = () => {
+        if (numeroInput.value.trim() === '') {
+            errorNumero.textContent = 'O campo número é obrigatório.';
+            return false;
+        }
+        errorNumero.textContent = '';
+        return true;
+    };
+
+    const validarCEP = () => {
+        // Validação simples para o formato XXXXX-XXX
+        const cepRegex = /^\d{5}-\d{3}$/;
+        if (!cepRegex.test(cepInput.value.trim())) {
+            errorCep.textContent = 'Formato de CEP inválido (use XXXXX-XXX).';
+            return false;
+        }
+        errorCep.textContent = '';
+        return true;
+    };
+
     // --- Adiciona os "ouvintes" para validar em tempo real ---
     nomeInput.addEventListener('input', validarNome);
     emailInput.addEventListener('input', validarEmail);
     telefoneInput.addEventListener('input', validarTelefone);
     ruaInput.addEventListener('input', validarRua);
+    numeroInput.addEventListener('input', validarNumero);
+    cepInput.addEventListener('input', validarCEP);
 
     // --- Validação Final ao Submeter ---
     formCheckout.addEventListener('submit', function(event) {
         // Roda todas as validações uma última vez para garantir
-        const formularioValido = validarNome() && validarEmail() && validarTelefone() && validarRua();
+        const formularioValido = validarNome() && validarEmail() && validarTelefone() && validarRua() && validarNumero() && validarCEP();
 
         if (!formularioValido) {
             event.preventDefault(); // Impede o envio se algo estiver inválido

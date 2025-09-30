@@ -3,9 +3,7 @@ require_once '../php/session-manager.php';
 require_once '../php/conexao.php';
 require_once '../php/Classes/CarrinhoClass.php';
 require_once '../php/Classes/UsuarioClass.php'; 
-require_once '../php/Classes/ClienteClass.php'; 
-
-
+require_once '../php/Classes/ClienteClass.php';
 
 // Garante que o utilizador esteja logado para aceder ao checkout
 if (!isset($_SESSION['usuario_id'])) {
@@ -32,26 +30,23 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Meu Perfil - Casa da Roça</title>
-    
+    <title>Finalizar Compra - Casa da Roça</title>
     <link rel="stylesheet" href="../css/style-cliente.css?v=<?php echo time(); ?>">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/5eb066ef2f.js" crossorigin="anonymous"></script>
+    <!-- Outros links -->
 </head>
 <body>
     <?php include 'cliente-header.php'; ?>
+    <main>
         <section class="secao-conteudo">
             <h1 style="text-align: center;">Finalizar Compra</h1>
             <p style="text-align: center; margin-bottom: 2rem;">Preencha os seus dados para entrega e conclua o pedido.</p>
 
             <div class="checkout-container">
                 <div class="checkout-form-col">
+                    <!-- Formulário preparado para a validação JS -->
                     <form action="../php/Funcoes/processa-pedido.php" method="POST" id="form-checkout">
                         <h2>Dados de Entrega</h2>
-
+                        
                         <div class="form-group">
                             <label for="checkout-nome">Nome Completo</label>
                             <input type="text" id="checkout-nome" name="nome_completo" required value="<?php echo htmlspecialchars($cliente_info['nome'] ?? ''); ?>">
@@ -73,7 +68,7 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
                         <div class="form-group">
                             <label for="cidade">Cidade</label>
                             <input type="text" id="cidade" name="cidade" value="Feira de Santana" required readonly>
-                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label for="rua_entrega">Rua</label>
@@ -81,9 +76,23 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
                             <span class="error-message" id="error-checkout-rua"></span>
                         </div>
 
-                        <label for="observacoes">Observações (opcional)</label>
-                        <textarea id="observacoes" name="observacoes"></textarea>
+                        <div class="form-group">
+                            <label for="numero_entrega">Número</label>
+                            <input type="text" id="numero_entrega" name="numero" required value="<?php echo htmlspecialchars($cliente_info['numero'] ?? ''); ?>">
+                            <span class="error-message" id="error-checkout-numero"></span>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="cep_entrega">CEP</label>
+                            <input type="text" id="cep_entrega" name="cep" required value="<?php echo htmlspecialchars($cliente_info['cep'] ?? ''); ?>">
+                            <span class="error-message" id="error-checkout-cep"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="observacoes">Observações (opcional)</label>
+                            <textarea id="observacoes" name="observacoes"></textarea>
+                        </div>
+                    
                         <button type="submit" class="botao" style="margin-top: 1.5rem;">Finalizar Compra</button>
                     </form>
                 </div>
@@ -91,7 +100,6 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
                 <div class="checkout-resumo-col">
                     <h2>Resumo do Pedido</h2>
                     <?php
-                     
                         $subtotal = 0;
                         foreach ($produtosNoCarrinho as $produto) {
                             $subtotal += $produto['preco'] * $produto['quantidade'];
@@ -120,6 +128,6 @@ $usuario_info = $usuario_obj->buscarPorId($_SESSION['usuario_id']);
         </section>
     </main>
     <?php include 'cliente-footer.php'; ?>
-    <script src="../script.js"></script>
+    <script src="../script.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
