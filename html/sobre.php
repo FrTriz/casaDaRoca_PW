@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="mySlides fade">
-                    <img src="/img/mesa_de_cafe.jpg" style="width:100%" alt="Visão da fazenda e produtores locais">
+                    <img src="/img/alimentos-organicos.jpg" style="width:100%" alt="Visão da fazenda e produtores locais">
                     <div class="slideshow-caption">Valorização de produtores locais</div>
                 </div>
 
@@ -40,9 +40,9 @@
             <br>
 
             <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span> 
-            <span class="dot" onclick="currentSlide(2)"></span> 
-            <span class="dot" onclick="currentSlide(3)"></span> 
+                <span class="dot" onclick="currentSlide(1)"></span> 
+                <span class="dot" onclick="currentSlide(2)"></span> 
+                <span class="dot" onclick="currentSlide(3)"></span> 
             </div>
         </section>
         <section class="secao-conteudo">
