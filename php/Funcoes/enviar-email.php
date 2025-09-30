@@ -2,18 +2,18 @@
 // Usar o PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 // ----------------------------------------------------------------------
-// ERRO 1 CORRIGIDO: Removida a inclusão manual. 
-// Usamos o Autoloader do Composer para carregar o PHPMailer de forma correta e segura.
-// O caminho é absoluto no Docker: /usr/src/app/vendor/autoload.php
-require_once '/usr/src/app/vendor/autoload.php';
-
+// INCLUSÕES CORRIGIDAS MANUALMENTE
+// Define o caminho absoluto para sua pasta PHPMailer.php/ no Docker
+define('PHPM_PATH', '/usr/src/app/php/PHPMailer.php/');
+// Inclui os arquivos necessários da pasta PHPMailer
+require_once PHPM_PATH . 'Exception.php';
+require_once PHPM_PATH . 'PHPMailer.php';
+require_once PHPM_PATH . 'SMTP.php';
 // Inclusões de Código Local (Mantidas)
 require_once __DIR__ . '/../conexao.php';
 require_once __DIR__ . '/../session-manager.php';
 // ----------------------------------------------------------------------
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // CAPTURA E LIMPEZA DOS DADOS
@@ -23,17 +23,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conteudo_msg = htmlspecialchars(trim($_POST['mensagem']));
 
     if (empty($nome) || empty($email_remetente) || empty($assunto_form) || empty($conteudo_msg)) {
-        // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+        // Redirecionamento para a URL ABSOLUTA
         header("Location: /email-sucesso.php?status=erro_campos");
         exit;
     }
 
     try {
-        // ... (Lógica de busca e inserção de mensagem no banco)
+        // Tenta encontrar o id_cliente com base no e-mail
+        $idCliente = null;
+        $stmt_user = $pdo->prepare("SELECT id_usuario FROM usuario WHERE email = ?");
+        $stmt_user->execute([$email_remetente]);
+        $usuario = $stmt_user->fetch(PDO::FETCH_ASSOC);
 
-        // Se encontrou um cliente, salva a mensagem associada a ele
-        if ($idCliente) {
-            $idAdministrador = 1; 
+        if ($usuario) {
+            $idCliente = $usuario['id_usuario'];
+            // Se encontrou um cliente, salva a mensagem associada a ele
+            $idAdministrador = 1; // Admin padrão
             $sql = "INSERT INTO mensagem (id_cliente, id_administrador, assunto, conteudo, data_envio) 
                      VALUES (?, ?, ?, ?, NOW())";
             $stmt_msg = $pdo->prepare($sql);
@@ -46,19 +51,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        // ATENÇÃO: Se isso falhar, o problema é nas configurações de App Password do Gmail
         $mail->Username = 'testecodejoh@gmail.com'; 
         $mail->Password = 'rwag tyhn ifnw ekep'; 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
         $mail->CharSet = 'UTF-8';
 
-        // Destinatários (mantido)
+        // Destinatários
         $mail->setFrom('testecodejoh@gmail.com', 'Notificação do Site');
         $mail->addAddress('testecodejoh@gmail.com', 'Administrador');
         $mail->addReplyTo($email_remetente, $nome);
 
-        // Conteúdo do e-mail (mantido)
+        // Conteúdo do e-mail
         $mail->isHTML(false);
         $mail->Subject = "Nova Mensagem: " . $assunto_form;
         $mail->Body = "Você recebeu uma nova mensagem do seu site:\n\n" .
@@ -69,16 +73,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->send();
         
         // Sucesso: Redireciona para a página de sucesso
-        // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
         header("Location: /email-sucesso.php?status=sucesso");
         exit;
 
     } catch (Exception $e) {
-        // Falha no envio ou no banco de dados
-        // error_log("Erro no formulário de contato: " . $e->getMessage()); // Descomente para depuração
-        // CORREÇÃO: Redirecionamento para a URL ABSOLUTA
+        // Falha no envio ou DB
+        error_log("Erro no formulário de contato: " . $e->getMessage()); 
+        // Redirecionamento para a URL ABSOLUTA
         header("Location: /email-sucesso.php?status=erro_envio");
         exit;
     }
+} else {
+    // Acesso direto
+    header('Location: /contatos.php'); 
+    exit;
 }
 ?>
