@@ -12,6 +12,6 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
 }
 
 // Redireciona de volta para a lista de pedidos no painel de administração
-header('Location: ../../html/admin-pedidos-recentes.php');
+header('Location: /admin-pedidos-recentes.php');
 exit();
 ?>
