@@ -891,30 +891,18 @@ a:hover {
     max-height: 450px; /* Limita a altura para manter a proporção */
 }
 
-/* Botões Anterior e Próximo */
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+.produto img {
+    /* O valor de 150px é um bom ponto de partida, ajuste se necessário */
+    width: 150px;
+    height: 150px; 
+    
+    /* Isso é crucial: garante que a imagem preencha a caixa sem distorcer */
+    object-fit: cover; 
+    
+    /* Mantém as regras que você já tinha */
+    max-width: 100%; 
+    border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 /* Texto de legenda */
