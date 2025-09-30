@@ -3,14 +3,11 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-// Incluir os arquivos do PHPMailer
-require '../PHPMailer/Exception.php';
-require '../PHPMailer/PHPMailer.php';
-require '../PHPMailer/SMTP.php';
-
-// Incluir os seus arquivos
-require_once '../conexao.php';
-require_once '../session-manager.php';
+require_once __DIR__ . '/../PHPMailer/Exception.php';
+require_once __DIR__ . '/../PHPMailer/PHPMailer.php';
+require_once __DIR__ . '/../PHPMailer/SMTP.php';
+require_once __DIR__ . '/../conexao.php';
+require_once __DIR__ . '/../session-manager.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

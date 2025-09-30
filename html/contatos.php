@@ -1,5 +1,5 @@
 <?php
-// Inclua o seu session-manager.php aqui se esta página precisar de lógica de sessão
+
 require_once '../php/session-manager.php';
 ?>
 <!DOCTYPE html>
