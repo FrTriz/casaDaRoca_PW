@@ -2,8 +2,8 @@
 
 require_once '../php/session-manager.php';
 require_once '../php/conexao.php';
-require_once '../php/Classes/PedidoClass.php'; // Inclua a classe Pedido
-require_once '../php/Funcoes/verifica-admin.php'; // Verifica se é admin
+require_once '../php/Classes/PedidoClass.php'; 
+require_once '../php/Funcoes/verifica-admin.php'; 
 
 
 $pedido_obj = new Pedido($pdo);
@@ -48,7 +48,7 @@ $pedidos = $pdo->query("SELECT p.id_pedido, c.nome AS nome_cliente, p.data_pedid
                                     <td><?php echo htmlspecialchars($pedido['nome_cliente']); ?></td>
                                     <td><?php echo date('d/m/Y H:i', strtotime($pedido['data_pedido'])); ?></td>
                                     <td>
-                                        <form action="../php/Funcoes/atualizar-status-pedido.php" method="GET">
+                                        <form action="../php/Funcoes/atualizar-pedido.php" method="GET">
                                             <input type="hidden" name="id" value="<?php echo $pedido['id_pedido']; ?>">
                                             <select name="status" onchange="this.form.submit()">
                                                 <option value="pendente" <?php if($pedido['status'] == 'pendente') echo 'selected'; ?>>Pendente</option>
