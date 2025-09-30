@@ -37,7 +37,6 @@ $pedidos = $pdo->query("SELECT p.id_pedido, c.nome AS nome_cliente, p.data_pedid
                             <th>Cliente</th>
                             <th>Data</th>
                             <th>Status</th>
-                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,7 +55,6 @@ $pedidos = $pdo->query("SELECT p.id_pedido, c.nome AS nome_cliente, p.data_pedid
                                             </select>
                                         </form>
                                     </td>
-                                    <td><a href="admin-pedido-detalhes.php?id=<?php echo $pedido['id_pedido']; ?>">Ver Detalhes</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
